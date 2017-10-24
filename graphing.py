@@ -28,6 +28,9 @@ def graph1(data):
 
 def graph2(data):
     """ Change over time. """
+    
+def graph2(data):
+    """ Distribution of scores for a given review"""
 
 # Testing out simple graph
 data1 = [[1,1],[2,4],[3,9],[4,16],[5,25],[6,36],[7,49],[8,64],[9,81],[10,100]]
