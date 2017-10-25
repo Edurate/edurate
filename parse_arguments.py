@@ -8,13 +8,19 @@ def parse_arguments(args):
         
     edu_parser.add_argument(
         "-f", "--file",
-        help="File containing last name of students",
+        help="File containing the responses",
         type=str, required=True
     )
     
     edu_parser.add_argument(
         "-c", "--confidential",
         help="Ignores student emails in responses",
+        action="store_true", required=False
+    )
+    
+    edu_parser.add_argument(
+        "-s", "--spam",
+        help="Removes spam from the responses",
         action="store_true", required=False
     )
     
@@ -30,12 +36,6 @@ def parse_arguments(args):
         help="Display confirmation information",
         action="store_const", dest="logging_level", 
         const=logging.INFO
-    )
-    
-    edu_parser.add_argument(
-        "-s", "--spam",
-        help="Removes spam and other unneccessary information",
-        action="store_true", required=False
     )
     
     arguments = edu_parser.parse_args(args)

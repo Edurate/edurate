@@ -2,7 +2,6 @@ import sys
 import logging
 
 from parse_arguments import parse_arguments
-from defaults import FILE_LOCATION
 
 if __name__ == "__main__":
     print("Welcome to Edurate")
