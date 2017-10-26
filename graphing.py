@@ -9,7 +9,6 @@ from ggplot import *
 from pandas import DataFrame
 import pandas as pd
 from datetime import datetime, timedelta
-import numpy as np
 
 def graph(data):
     """ Method to display all graphs """
@@ -66,7 +65,7 @@ def graph1(data):
 
 def graph2(data):
     """ Change over time. """
-    
+
 def graph2(data):
     """ Distribution of scores for a given review"""
 
