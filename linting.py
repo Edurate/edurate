@@ -3,6 +3,7 @@
 # Install autopep8 and pep8
 # pip install autopep8
 # pip install pep8
+# pip install pytest-flake8
 # To fix many issues, type the following into the terminal
 # autopep8 --in-place  --aggressive --aggressive  *.py
 # If it still fails, go to the code that is specified and change it
