@@ -12,4 +12,3 @@ if __name__ == "__main__":
         print("Confidential")
     if(edu_args.spam):
         print("Spam")
-    test_flake8()
