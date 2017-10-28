@@ -86,6 +86,10 @@ def graph2(data):
     base = datetime.datetime.today()
     date_list = [base - datetime.timedelta(days=x) for x in range(0, 7)]
 
+    # Group all rows with question, and then take the average.
+    newData = newData.groupby([Question']).mean().reset_index()
+    newData['All'] = "Indiviual Questions"
+
     # Create bar graph with data from past week
     g2 = ggplot(date_list, aes(x = "Average Scores", y = "Score"), newData) +\
         geom_bar() +\
