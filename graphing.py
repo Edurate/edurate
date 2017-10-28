@@ -66,15 +66,6 @@ def graph1(data):
 def graph2(data):
     """ Change over time. """
 
-    # Converting data
-    dat3 = DataFrame(data3, columns = ['A', 'B'])
-
-    # Creating graph then assigning to g3
-    g3 = ggplot(dat3, aes(x='A', y='B')) + geom_line()
-
-    # Return graph
-    return g3
-
 def graph2(data):
     """ Distribution of scores for a given review"""
 
