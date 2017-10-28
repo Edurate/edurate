@@ -66,7 +66,7 @@ def graph1(data):
 def graph2(data):
     """ Change over time. """
 
-def graph2(data):
+def graph3(data):
     """ Distribution of scores for a given review"""
 
 # Testing data for what we think the input data will be
