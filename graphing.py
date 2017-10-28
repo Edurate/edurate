@@ -64,7 +64,25 @@ def graph1(data):
     return g
 
 def graph2(data):
-    """ Change over time. """
+    """ Average scores for each question during the last week """
+
+     # Get all columns that are numerical questions
+    numQuestions = data.select_dtypes(include=['int64']).columns.values
+
+    # Melt data so that each question is in a seperate row
+    newData = pd.melt(data, id_vars=["Date","Name"], value_vars=numQuestions, var_name="Question",value_name="Score")
+
+    # Create an interval of past seven days
+    base = datetime.datetime.today()
+    date_list = [base - datetime.timedelta(days=x) for x in range(0, 7)]
+
+    # Create bar graph with data from past week
+    g2 = ggplot(date_list, aes(x = "Average Scores", y = "Score"), newData) +\
+        geom_bar() +\
+        ggtitle("Average Scores for the Last Seven Days")
+
+    # Return graph
+    return g2
 
 def graph3(data):
     """ Distribution of scores for a given review"""
