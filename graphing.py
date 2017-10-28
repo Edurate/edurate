@@ -51,12 +51,22 @@ def graph1(data):
 
     # Group all rows with same date and question, and then take the average.
     newData = newData.groupby(['Date','Question']).mean().reset_index()
+    newData['All'] = "Indiviual Questions"
+
+    newData2 = newData.groupby('Date').mean().reset_index()
+    newData2['Question'] = "All Questions"
+    newData2['All'] = "Average of All Questions"
+
+    newData = pd.concat([newData,newData2])
+
+    print(str(newData))
 
     # Create graph with seperate lines for each question
-    g = ggplot(aes(x='Date',y="Score",colour="Question"),newData) +\
+    g = ggplot(aes(x='Date',y="Score",colour="Question"), newData) +\
         geom_point() +\
         geom_line() +\
-        scale_x_date(labels = date_format("%Y-%m-%d")) +\
+        facet_grid("All") +\
+        scale_x_date(labels = date_format("%Y-%m-%d"), breaks=date_breaks('1 month')) +\
         labs(x = "Date", y = "Average Question Score") +\
         ggtitle("Question Scores Over Time")
 
