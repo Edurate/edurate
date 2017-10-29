@@ -41,12 +41,14 @@ Edurate is open to evolution. Its initial questionaire can be edited by professo
 
 ### Archive Information
 
-Inormation is dumped to a rsv file incase of any crash so that professors may downlaod all the information to their computer or external harddrive.
+Inormation is dumped to a rsv file incase of any crash so that professors may downlaod all the information to their computer or external
+harddrive.
 ```
 ```
 ### Confidentiality
 
-Edurate has a confidentiality option. Before sending out the questionaires the profesor will decide if the form should be confidential or not. If it is not condidential, email adresses will be recorded. If it is confadential, they wil not.
+Edurate has a confidentiality option. Before sending out the questionaires the profesor will decide if the form should be confidential 
+or not. If it is not condidential, email adresses will be recorded. If it is confadential, they wil not.
 
 ```
 ```
@@ -57,7 +59,8 @@ Edurate has a confidentiality option. Before sending out the questionaires the p
 
 ### Functions Tested
 
-The test sutie verifies Edurate's functions. The first function that is tested it to make sure thet the questionaires are properly downloaded and transfered into a usable spreadsheet.
+The test sutie verifies Edurate's functions. The first function that is tested it to make sure thet the questionaires are properly
+downloaded and transfered into a usable spreadsheet.
 
 ### Running the Test Suite
 
@@ -67,7 +70,8 @@ The test sutie verifies Edurate's functions. The first function that is tested i
 
 ### Activating Travis-Ci
 
-Travis can only be implamented by admin accounts. Admin users can activate Travis by creating a .travis.yml file in the project's root dercctory.
+Travis can only be implamented by admin accounts. Admin users can activate Travis by creating a .travis.yml file in the project's root 
+dercctory.
 
 ---
 
