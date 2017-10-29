@@ -6,10 +6,9 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from gensim import corpora, models
 import gensim
-import pyLDAvis.gensim
 
 
-def create_topic_model(seed_arguments, list_responses):
+def create_topic_model(edurate_arguments, list_responses):
     """ Using LDA from gensim, create the topic model from the list of responses """
     topic_model_dictionary, texts_to_analyze = create_topic_model_dictionary(
         list_responses)
@@ -60,7 +59,7 @@ def create_topic_model_dictionary(list_responses):
 def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus,
                                texts_to_analyze, num_topics):
     """ Using only textual output provide a basic display of the topic model """
-    print("alpha =", seed_gensim_topic_model.alpha)
-    print(seed_gensim_topic_model)
-    print(seed_gensim_topic_model.print_topics(num_topics))
+    print("alpha =", edurate_gensim_topic_model.alpha)
+    print(edurate_gensim_topic_model)
+    print(edurate_gensim_topic_model.print_topics(num_topics))
     print()
