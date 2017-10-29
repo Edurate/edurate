@@ -47,6 +47,8 @@ Edurate has a confidentiality option. Before sending out the questionaires the p
 
 ### Functions Tested
 
+The test sutie verifies Edurate's functions. The first function that is tested it to make sure thet the questionaires are properly downloaded and transfered into a usable spreadsheet.
+
 ### Running the Test Suite
 
 ### Automatic Linting
@@ -54,6 +56,8 @@ Edurate has a confidentiality option. Before sending out the questionaires the p
 ### Test Coverage
 
 ### Activating Travis-Ci
+
+Travis can only be implamented by admin accounts. Admin users can activate Travis by creating a .travis.yml file in the project's root dercctory.
 
 ---
 
