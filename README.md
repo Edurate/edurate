@@ -31,6 +31,14 @@ Edurate's spam filter removes profanities and sets aside unhelpful comments.
 
 Edurate is open to evolution. Its initial questionaire can be edited by professors who wish to add or remove questions.
 
+### Archive Information
+
+Inormation is dumped to a csv file incase of any crash so that professors may downlaod all the information to their computer.
+
+### Confidentiality
+
+Edurate has a confidentiality option. Before sending out the questionaires the profesor will decide if the form should be confidential or not. If it is not condidential, email adresses will be recorded. If it is confadential, they wil not.
+
 ---
 
 ## Testing
