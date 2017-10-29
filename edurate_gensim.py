@@ -1,18 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import gensim
-#import pyLADvis
 import read_responses
 from gensim import corpora
 from pprint import pprint
-
-def create_tokens(list_responses):
-    texts = [[word for word in list_responses.lower().split()]
-        for list_responses in list_responses]
-    pprint(texts)
-=======
-=======
->>>>>>> 992853567f77d7caac9c4cd0fefb11a237c7c6db
 """ Uses gensim to analyze the text of the responses to the main questions of the SEED Survey """
 
 from nltk.tokenize import RegexpTokenizer
@@ -22,7 +11,11 @@ from nltk.stem import WordNetLemmatizer
 from gensim import corpora, models
 import gensim
 
-
+def create_tokens(list_responses):
+    texts = [[word for word in list_responses.lower().split()]
+        for list_responses in list_responses]
+    pprint(texts)
+    
 def create_topic_model(edurate_arguments, list_responses):
     """ Using LDA from gensim, create the topic model from the list of responses """
     topic_model_dictionary, texts_to_analyze = create_topic_model_dictionary(
@@ -78,7 +71,3 @@ def show_topic_model_textually(seed_gensim_topic_model, seed_gensim_corpus,
     print(edurate_gensim_topic_model)
     print(edurate_gensim_topic_model.print_topics(num_topics))
     print()
-<<<<<<< HEAD
->>>>>>> 992853567f77d7caac9c4cd0fefb11a237c7c6db
-=======
->>>>>>> 992853567f77d7caac9c4cd0fefb11a237c7c6db
