@@ -18,9 +18,11 @@ def graph(data):
 
     # Graph objects returned from functions
     g1 = graph1(data_frame)
+    g2 = graph2(data_frame)
 
     # Display generated graphs
     print(g1)
+    print(g2)
 
 def exampleGraph(data):
     """ Simple example on how to create a graph and return it."""
@@ -82,16 +84,21 @@ def graph2(data):
     # Melt data so that each question is in a seperate row
     newData = pd.melt(data, id_vars=["Date","Name"], value_vars=numQuestions, var_name="Question",value_name="Score")
 
-    # Create an interval of past seven days
-    base = datetime.datetime.today()
-    date_list = [base - datetime.timedelta(days=x) for x in range(0, 7)]
+    # Convert date string into actual data type
+    newData['Date'] = pd.to_datetime(newData['Date'], format="%m/%d/%Y")
+
+    # Latest Dates
+    recent_date = newData['Date'].max()
+
+    # Removing all dates that are recent
+    newData = newData[newData.Date==recent_date]
+    print(str(newData))
 
     # Group all rows with question, and then take the average.
-    newData = newData.groupby([Question']).mean().reset_index()
-    newData['All'] = "Indiviual Questions"
+    newData = newData.groupby(['Question']).mean().reset_index()
 
     # Create bar graph with data from past week
-    g2 = ggplot(date_list, aes(x = "Average Scores", y = "Score"), newData) +\
+    g2 = ggplot(aes(x = "Question", y = "Score"), newData) +\
         geom_bar() +\
         ggtitle("Average Scores for the Last Seven Days")
 
