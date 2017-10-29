@@ -7,7 +7,11 @@ Edurate is a professor evaluation program written to help professors gather info
 
 Edurate is a ython 3 program and, therefore, uses [pip](https://pip.pypa.io/en/stable/installing/) for instillation. Type the following commands before running.
 
-'''shell
+```shell
 pip install --upgrade pip
 pip install -r requirements.txt
-'''
+```
+
+## Usage
+
+Edurate analisys professor/course questionares and uses natrual language processing detect the most common problems and output them into the terminal.
