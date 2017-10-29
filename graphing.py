@@ -1,7 +1,6 @@
 """
 Input to all functions should be the data from csv
-pip install ggplot
-pip install pandas
+pip3 install ggplot
 """
 
 # import matplotlib.pyplot as plt
@@ -13,31 +12,18 @@ from datetime import datetime, timedelta
 def graph(data):
     """ Method to display all graphs """
 
-    # Converts the input data into a pandas DataFrame
-    data_frame = DataFrame(data[1:], columns = data[0])
-
     # Graph objects returned from functions
-    g1 = graph1(data_frame)
-    g2 = graph2(data_frame)
+    g1 = graph1(data)
+    g2 = graph2(data)
 
     # Display generated graphs
     print(g1)
     print(g2)
 
-def exampleGraph(data):
-    """ Simple example on how to create a graph and return it."""
-
-    # Convert data so ggplot can use it
-    dat = DataFrame(data1, columns = ['A','B'])
-
-    # Create graph and assign the object to g
-    g = ggplot(dat, aes(x='A', y='B')) + geom_line()
-
-    # Return graph
-    return g
-
 def graph1(data):
     """ Average score as time goes on """
+
+    data = DataFrame(data[1:], columns = data[0])
 
     # Get all columns that are numerical questions
     numQuestions = data.select_dtypes(include=['int64']).columns.values
@@ -61,8 +47,6 @@ def graph1(data):
 
     newData = pd.concat([newData,newData2])
 
-    print(str(newData))
-
     # Create graph with seperate lines for each question
     g = ggplot(aes(x='Date',y="Score",colour="Question"), newData) +\
         geom_point() +\
@@ -76,7 +60,9 @@ def graph1(data):
     return g
 
 def graph2(data):
-    """ Average scores for each question during the last week """
+    """ Average scores for each question on most recent date """
+
+    data = DataFrame(data[1:], columns = data[0])
 
      # Get all columns that are numerical questions
     numQuestions = data.select_dtypes(include=['int64']).columns.values
@@ -92,7 +78,6 @@ def graph2(data):
 
     # Removing all dates that are recent
     newData = newData[newData.Date==recent_date]
-    print(str(newData))
 
     # Group all rows with question, and then take the average.
     newData = newData.groupby(['Question']).mean().reset_index()
