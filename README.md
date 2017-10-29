@@ -16,7 +16,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Initial Set Up
+## Initial Setup
 
 ---
 
@@ -29,17 +29,27 @@ the terminal.
 
 Edurate's spam filter removes profanities and sets aside unhelpful comments. 
 
+```
+```
+
 ### Evolution
 
 Edurate is open to evolution. Its initial questionaire can be edited by professors who wish to add or remove questions.
 
+```
+```
+
 ### Archive Information
 
 Inormation is dumped to a rsv file incase of any crash so that professors may downlaod all the information to their computer or external harddrive.
-
+```
+```
 ### Confidentiality
 
 Edurate has a confidentiality option. Before sending out the questionaires the profesor will decide if the form should be confidential or not. If it is not condidential, email adresses will be recorded. If it is confadential, they wil not.
+
+```
+```
 
 ---
 
@@ -62,3 +72,5 @@ Travis can only be implamented by admin accounts. Admin users can activate Travi
 ---
 
 ## Questions or Comments
+
+Any problems regarding Edurate can be written in the issues link at the top of the site.
