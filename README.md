@@ -1,9 +1,10 @@
 
 # Edurate
 
-Edurate is a professor evaluation program written to help professors gather information throuout the sementer in order to help them better
-their courses as see where their students are struggeling. Users need only send out questionairs and, once subbmitted, Edurate will read in
-the text files and output information on where students are struggeling.
+Edurate is a professor evaluation program written to help professors gather information throuout the sementer in order to help them
+better their courses as see where their students are struggeling. Users need only send out questionairs and, once subbmitted, Edurate
+will read in the text files and output information on where students are struggeling. Edurate will save and time stamp questionairs so
+that each time it is run during a given semester improvment can be seen.
 
 ## Installation
 
@@ -22,6 +23,13 @@ pip install -r requirements.txt
 Edurate analisys professor/course questionares and uses natrual language processing detect the most common problems and output them into 
 the terminal.
 
+### Spam Filter
+
+Edurate's spam filter removes profanities and sets aside unhelpful comments. 
+
+### Evolution
+
+Edurate is open to evolution. Its initial questionaire can be edited by professors who wish to add or remove questions.
 
 ---
 
