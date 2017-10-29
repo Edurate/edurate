@@ -16,6 +16,8 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+## Initial Set Up
+
 ---
 
 ## Usage
@@ -33,7 +35,7 @@ Edurate is open to evolution. Its initial questionaire can be edited by professo
 
 ### Archive Information
 
-Inormation is dumped to a csv file incase of any crash so that professors may downlaod all the information to their computer.
+Inormation is dumped to a rsv file incase of any crash so that professors may downlaod all the information to their computer or external harddrive.
 
 ### Confidentiality
 
@@ -43,6 +45,15 @@ Edurate has a confidentiality option. Before sending out the questionaires the p
 
 ## Testing
 
+### Functions Tested
+
+### Running the Test Suite
+
+### Automatic Linting
+
+### Test Coverage
+
+### Activating Travis-Ci
 
 ---
 
