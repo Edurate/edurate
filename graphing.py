@@ -98,9 +98,9 @@ def graph2(data):
     newData = newData.groupby(['Question']).mean().reset_index()
 
     # Create bar graph with data from past week
-    g2 = ggplot(aes(x = "Question", y = "Score"), newData) +\
+    g2 = ggplot(aes(x = "Question", weight = "Score"), newData) +\
         geom_bar() +\
-        ggtitle("Average Scores for the Last Seven Days")
+        ggtitle("Most Recent Average Scores")
 
     # Return graph
     return g2
