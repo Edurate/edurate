@@ -91,7 +91,30 @@ def graph2(data):
     return g2
 
 def graph3(data):
-    """ Distribution of scores for a given review"""
+    """ Box plot for scores as time goes on """
+
+    data = DataFrame(data[1:], columns = data[0])
+
+    # Get all columns that are numerical questions
+    numQuestions = data.select_dtypes(include=['int64']).columns.values
+
+    # Melt data so that each question is in a seperate row
+    newData = pd.melt(data, id_vars=["Date","Name"], value_vars=numQuestions, var_name="Question",value_name="Score")
+
+    # Get rid of unecessary column
+    newData = newData.drop('Name', axis=1)
+
+    # Convert date string into an actual date type
+    newData['Date'] = pd.to_datetime(newData['Date'], format="%m/%d/%Y")
+
+    # Create graph
+    g3 = ggplot(aes(x = 'Date', y = 'Score'), newData) +\
+         geom_boxplot() +\
+         facet_grid("All") +\
+         ggtitle("Distribution of Question Scores over Time")
+
+    # Return graph
+    return g3
 
 # Testing data for what we think the input data will be
 exampleData = [["Date","Name","Textual Question", "Question 1", "Question 2", "Question 3"],["10/23/2017","dillam","Answer to textual question",1,2,7],["10/23/2017","austin","Answer to textual question",3,2,1],["10/23/2017","bob","Answer to textual question",2,3,1],["10/23/2017","john","Answer to textual question",1,4,5],["10/23/2017","joe","Answer to textual question",5,5,4],["10/30/2017","dillam","Answer to textual question",2,2,6],["10/30/2017","austin","Answer to textual question",5,2,1],["10/30/2017","bob","Answer to textual question",2,3,10],["10/30/2017","john","Answer to textual question",3,4,2],["10/30/2017","joe","Answer to textual question",5,2,4],["11/7/2017","dillam","Answer to textual question",2,1,3],["11/7/2017","austin","Answer to textual question",5,5,5],["11/7/2017","bob","Answer to textual question",6,4,5],["11/7/2017","john","Answer to textual question",5,4,7],["11/7/2017","joe","Answer to textual question",5,5,6]]
