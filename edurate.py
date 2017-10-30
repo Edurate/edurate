@@ -22,6 +22,6 @@ if __name__ == "__main__":
     # sends file name supplied by user and if confidential
     # and gets the responses from the csv file
     res = read_responses(edu_args.file, edu_args.confidential)
-    for response in res:
+    for response in res[12:]:
             print(response)
 
