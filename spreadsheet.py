@@ -25,23 +25,49 @@ def create_csv(spreadsheet_list):
     logging.info("Creating a list of lists of students")
     formated_list = list()
     for entry in spreadsheet_list:
-        formated_entry = list()
-        for question, response in entry.items():
-            if question == 'Email Address':
-                username = entry[question].partition('@')[0]
-                formated_entry.append(username)
-            elif question == 'Timestamp':
+        formated_entry = [None]*12
+        for question, response in entry.items():    
+            if question == 'Timestamp':
                 time = entry[question].partition(' ')[0]
-                formated_entry.append(time)
+                formated_entry.pop(0)
+                formated_entry.insert(0, time)
+            elif question == 'Email Address':
+                username = entry[question].partition('@')[0]
+                formated_entry.pop(1)
+                formated_entry.insert(1, username)             
+            elif question[:2] == '1.':
+                formated_entry.pop(2)
+                formated_entry.insert(2, entry[question])
+            elif question[:2] == '2.':
+                formated_entry.pop(3)
+                formated_entry.insert(3, entry[question])
+            elif question[:2] == '3.':
+                formated_entry.pop(4)
+                formated_entry.insert(4, entry[question])
+            elif question[:2] == '4.':
+                formated_entry.pop(5)
+                formated_entry.insert(5, entry[question])
+            elif question[:2] == '5.':
+                formated_entry.pop(6)
+                formated_entry.insert(6, entry[question])
+            elif question[:2] == '6.':
+                formated_entry.pop(7)
+                formated_entry.insert(7, entry[question])
+            elif question[:2] == '7.':
+                formated_entry.pop(8)
+                formated_entry.insert(8, entry[question])
+            elif question[:2] == '8.':
+                formated_entry.pop(9)
+                formated_entry.insert(9, entry[question])
+            elif question[:2] == '9.':
+                formated_entry.pop(10)
+                formated_entry.insert(10, entry[question])
+            elif question[:3] == '10.':
+                formated_entry.pop(11)
+                formated_entry.insert(11, entry[question])
             else:
                 formated_entry.append(response)
 
-        formated_entry.insert(
-            0, formated_entry.pop(
-                formated_entry.index(time)))
-        formated_entry.insert(
-            1, formated_entry.pop(
-                formated_entry.index(username)))
         formated_list.append(formated_entry)
 
     logging.info("Writing formatted data to CSV file")
