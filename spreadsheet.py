@@ -2,7 +2,7 @@ import gspread
 import logging
 import csv
 from oauth2client.service_account import ServiceAccountCredentials
-
+from datetime import datetime
 def read_from_spreadsheet():
 
     logging.info(
@@ -23,31 +23,64 @@ def read_from_spreadsheet():
 def create_csv(spreadsheet_list):
     # returns True when funciton is completed
     logging.info("Creating a list of lists of students")
-    formated_list = list()
+    formatted_list = list()
     for entry in spreadsheet_list:
-        formated_entry = list()
+        maxDate = datetime(2000, 1, 1, 0, 0).date()
+        formatted_entry = [None]*12
         for question, response in entry.items():
-            if question == 'Email Address':
-                username = entry[question].partition('@')[0]
-                formated_entry.append(username)
-            elif question == 'Timestamp':
+            if question == 'Timestamp':
                 time = entry[question].partition(' ')[0]
-                formated_entry.append(time)
+                formatted_entry.pop(0)
+                date = datetime.strptime(time, '%m/%d/%Y').date()
+                if(date > maxDate):
+                    maxDate = date
+                formatted_entry.insert(0, date)
+            elif question == 'Email Address':
+                username = entry[question].partition('@')[0]
+                formatted_entry.pop(1)
+                formatted_entry.insert(1, username)
+            elif question[:2] == '1.':
+                formatted_entry.pop(2)
+                formatted_entry.insert(2, entry[question])
+            elif question[:2] == '2.':
+                formatted_entry.pop(3)
+                formatted_entry.insert(3, entry[question])
+            elif question[:2] == '3.':
+                formatted_entry.pop(4)
+                formatted_entry.insert(4, entry[question])
+            elif question[:2] == '4.':
+                formatted_entry.pop(5)
+                formatted_entry.insert(5, entry[question])
+            elif question[:2] == '5.':
+                formatted_entry.pop(6)
+                formatted_entry.insert(6, entry[question])
+            elif question[:2] == '6.':
+                formatted_entry.pop(7)
+                formatted_entry.insert(7, entry[question])
+            elif question[:2] == '7.':
+                formatted_entry.pop(8)
+                formatted_entry.insert(8, entry[question])
+            elif question[:2] == '8.':
+                formatted_entry.pop(9)
+                formatted_entry.insert(9, entry[question])
+            elif question[:2] == '9.':
+                formatted_entry.pop(10)
+                formatted_entry.insert(10, entry[question])
+            elif question[:3] == '10.':
+                formatted_entry.pop(11)
+                formatted_entry.insert(11, entry[question])
             else:
-                formated_entry.append(response)
+                formatted_entry.append(response)
 
-        formated_entry.insert(
-            0, formated_entry.pop(
-                formated_entry.index(time)))
-        formated_entry.insert(
-            1, formated_entry.pop(
-                formated_entry.index(username)))
-        formated_list.append(formated_entry)
+        formatted_list.append(formatted_entry)
+        for entry in formatted_list:
+            if(entry[0] < maxDate):
+                formatted_list.pop(formatted_list.index(entry))
 
     logging.info("Writing formatted data to CSV file")
     logging.debug("CSV file name: " + "data.csv")
     with open("./data.csv", 'w') as myfile:
         writer = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-        for item in formated_list:
+        for item in formatted_list:
             writer.writerow(item)
     return True

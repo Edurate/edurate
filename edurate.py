@@ -1,17 +1,16 @@
 import sys
 import logging
-from edurate_gensim import create_tokens
+
 from spreadsheet import read_from_spreadsheet
 from spreadsheet import create_csv
 from parse_arguments import parse_arguments
 from read_responses import read_responses
+from edurate_gensim import create_tokens
 
 if __name__ == "__main__":
     print("Welcome to Edurate")
     print("https://github.com/Edurate/edurate")
 
-    print("Welcome to Edurate")
-    print("https://github.com/Edurate/edurate")
     edu_args = parse_arguments(sys.argv[1:])
     print(edu_args.file)
     if(edu_args.confidential):
