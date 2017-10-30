@@ -2,7 +2,7 @@ import gspread
 import logging
 import csv
 from oauth2client.service_account import ServiceAccountCredentials
-
+from datetime import datetime
 def read_from_spreadsheet():
 
     logging.info(
@@ -25,12 +25,16 @@ def create_csv(spreadsheet_list):
     logging.info("Creating a list of lists of students")
     formated_list = list()
     for entry in spreadsheet_list:
+        maxDate = datetime(2000, 1, 1, 0, 0).date()
         formated_entry = [None]*12
         for question, response in entry.items():    
             if question == 'Timestamp':
                 time = entry[question].partition(' ')[0]
                 formated_entry.pop(0)
-                formated_entry.insert(0, time)
+                date = datetime.strptime(time, '%m/%d/%Y').date()
+                if(date > maxDate):
+                    maxDate = date
+                formated_entry.insert(0, date)
             elif question == 'Email Address':
                 username = entry[question].partition('@')[0]
                 formated_entry.pop(1)
@@ -69,7 +73,10 @@ def create_csv(spreadsheet_list):
                 formated_entry.append(response)
 
         formated_list.append(formated_entry)
-
+    for entry in formated_list:
+        if(entry[0] < maxDate):
+            formated_list.pop(formated_list.index(entry))
+            
     logging.info("Writing formatted data to CSV file")
     logging.debug("CSV file name: " + "data.csv")
     with open("./data.csv", 'w') as myfile:
