@@ -28,11 +28,10 @@ def parse_arguments(args):
     )
 
     edu_parser.add_argument(
-        "-g",
-        "--graph",
+        "-g", "--graph",
         help="Displays trend over time, average scores for each response, box plot for each entry",
-        action="store_true",
-        required=False)
+        action="store_true", required=False
+    )
 
     edu_parser.add_argument(
         "-d", "--debug",

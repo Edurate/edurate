@@ -45,22 +45,32 @@ def getGraphData(spreadsheet_list, conf):
 
 
 def filterDates(data):
+    """ returns only the most current responses """
+    columns = data[0]
+    timeColumn = None
+    # finds location of timestamp
+    for i in range(0, len(columns)):
+        if columns[i] == "Timestamp":
+            timeColumn = i
+            break
     maxDate = datetime(2000, 1, 1, 0, 0).date()
-    current = list()
-    for entry in data:
-        print(entry)
-        date = datetime.strptime(entry[0], '%m/%d/%Y').date()
-        if(date > maxDate):
-            maxDate = date
-        entry.pop(0)
-        entry.insert(0, date)
+    # finds out what the most current date is
     for entry in data[1:]:
-        if(entry[0] == maxDate):
+        for x in range(1, len(entry)):
+            if x == timeColumn:
+                date = datetime.strptime(entry[x], '%m/%d/%Y').date()
+                if date > maxDate:
+                    maxDate = date
+                entry.pop(x)
+                entry.insert(x, date)
+    current = list()
+    # keeps the most current responses for archiving
+    for entry in data[1:]:
+        if entry[timeColumn] == maxDate:
             current.append(entry)
     for x in current:
         print(x)
     return current
-
 
 def create_csv(spreadsheet_list):
     """ creates the csv file """

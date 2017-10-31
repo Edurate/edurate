@@ -16,13 +16,15 @@ from edurate_gensim import gensim_analysis
 if __name__ == "__main__":
     print("Welcome to Edurate")
     print("https://github.com/Edurate/edurate")
-
+    logging.info("Analyzes the Google form responses with gensim and " +
+                 "returns the repeated words, graphs, or archives the file")
     edu_args = parse_arguments(sys.argv[1:])
     spreadsheet_list = read_from_spreadsheet()
     data = getGraphData(spreadsheet_list, edu_args.confidential)
+    
     if(edu_args.archive):
         print("Archive")
-        archive_information(data)
+        archive_information(filterDates(list(data)))
     if(edu_args.graph):
         print("Graph")
         graph(data)
@@ -31,5 +33,4 @@ if __name__ == "__main__":
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
 
-    logging.info("Analyzes the Google form responses with gensim and " +
-                 "returns the repeated words, graphs, or archives the file")
+    
