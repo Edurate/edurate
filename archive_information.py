@@ -4,7 +4,7 @@ import os
 
 
 def archive_information(data):
-    """ Recieves 2d list of responses and saves them to csv archive """
+    """ Saves dates to csv file so that inmrovment can be documented"""
 
     today = datetime.now()
     fileName = str(today.month) + "-" + str(today.day) + \
