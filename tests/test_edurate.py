@@ -1,6 +1,4 @@
-import pytest
-
-# Run pytest linting.py to run the program and check code
+# Run pytest tests to run the program and check code
 # Install autopep8 and pep8
 # pip install autopep8
 # pip install pep8
@@ -45,6 +43,6 @@ def test_flake8():
         pyFiles = glob.glob(root + "/*.py")
         filenames.extend(pyFiles)
 
-    style_guide = flake8.get_style_guide(ignore=["E265", "E501"])
+    style_guide = flake8.get_style_guide(ignore=["E265", "E501", "F405"])
     report = style_guide.check_files(filenames)
     assert report.get_statistics('E') == [], 'Flake8 found violations'
