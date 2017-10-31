@@ -20,6 +20,25 @@ def read_from_spreadsheet():
     list_of_hashes = sheet.get_all_records()
     return list_of_hashes
 
+def getGraphData(spreadsheet_list):
+    new = list()
+    for key in spreadsheet_list[0].keys():
+        new.append(key)
+    output = list()
+    output.append(new)
+    for dictionary in spreadsheet_list:
+        new = list()
+        date = False
+        for response in dictionary.values():
+            if (not date):
+                new.append(response.split(" ")[0])
+            else:
+                new.append(response)
+            date = True
+        output.append(new)
+
+    return output
+
 def create_csv(spreadsheet_list):
     """ creates the csv file """
     # returns True when funciton is completed
@@ -48,7 +67,7 @@ def create_csv(spreadsheet_list):
                 questions.pop(7)
                 questions.insert(7, question)
             elif question[:2] == '7.':
-                questions.pop(8)  
+                questions.pop(8)
                 questions.insert(8, question)
             elif question[:2] == '8.':
                 questions.pop(9)
@@ -60,7 +79,7 @@ def create_csv(spreadsheet_list):
                 questions.pop(11)
                 questions.insert(11, question)
         break
-    # grabs responses to questions from each user        
+    # grabs responses to questions from each user
     for entry in spreadsheet_list:
         maxDate = datetime(2000, 1, 1, 0, 0).date()
         formatted_entry = [None]*12
