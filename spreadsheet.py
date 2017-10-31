@@ -33,12 +33,28 @@ def getGraphData(spreadsheet_list, conf):
             if key == "Email Address" and conf:
                 continue
             elif key == "Timestamp":
-                new.append(value.split(" ")[0])
+                new.insert(0,value.split(" ")[0])
             else:
                 new.append(value)
         output.append(new)
 
     return output
+    
+def filterDates(data):
+    maxDate = datetime(2000, 1, 1, 0, 0).date()
+    current = list()
+    for entry in data[1:]:
+        #print(entry[0])
+        date = datetime.strptime(entry[0], '%m/%d/%Y').date()
+        if(date > maxDate):
+            maxDate = date
+        entry.pop(0)
+        entry.insert(0,date)
+    for entry in data[1:]:
+        if(entry[0] == maxDate):
+            current.append(entry)
+    for x in current:
+        print(x)
 
 def create_csv(spreadsheet_list):
     """ creates the csv file """
