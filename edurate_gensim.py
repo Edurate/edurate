@@ -42,16 +42,16 @@ def create_tokens(list_responses):
 
 def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
-    #corpus = [dictionary.doc2bow(token) for token in tokens]
+    corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(dictionary.token2id)
-    # print(corpus)
+    #print(corpus)
+    #print(dictionary)
     return(dictionary)
 
     logging.info("creates a dictionary using the tokens")
 
 
 def corp_eval(dictionary, tokens):
-
     non_repeat = [
         token for token,
         docfreq in iteritems(
@@ -61,5 +61,5 @@ def corp_eval(dictionary, tokens):
     #corpus = [dictionary.doc2bow(token) for token in tokens]
     print(dictionary.token2id)
     print(viewitems(dictionary.dfs))
-
+    return(dictionary.dfs)
     logging.info("Evaluates the dictionary to see if words are repeated")
