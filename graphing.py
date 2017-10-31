@@ -17,7 +17,7 @@ def graph(data):
     """ Takes only most recent input data and then displays graphs """
 
     # Get all data because we need to see trend over time
-    data = convertToInts(data) + getArchivedData()
+    data = convertToInts(data)
 
     g1 = graph1(data)
     g2 = graph2(data)
@@ -27,23 +27,6 @@ def graph(data):
     print(g1)
     print(g2)
     print(g3)
-
-def getArchivedData():
-    """ Returns all old data from latest archived csv """
-
-    latest = None
-    for fil in os.listdir("./archive"):
-        date = datetime.strptime(fil.split(".")[0], '%m-%d-%Y')
-        if latest == None or date > latest:
-            latest = date
-
-    if (latest == None):
-        return None
-
-    fileName = str(latest.month)+"-"+str(latest.day)+"-"+str(latest.year)+".csv"
-    with open("./archive/"+fileName, 'r') as csvFile:
-        reader = csv.reader(csvFile)
-        return convertToInts(list(reader))
 
 def convertToInts(data):
     """ The numerical answers in the input comes in as strings. Convert these to integers so they can be graphed. """
@@ -101,7 +84,11 @@ def graph2(scoreData):
 
     dateColumn = scoreData[0][0]
 
-    data = DataFrame(scoreData[1:], columns = scoreData[0])
+    columnsData = scoreData[0]
+    for i in range(1,len(columnsData)):
+        columnsData[i] = columnsData[i].split('.')[0]
+
+    data = DataFrame(scoreData[1:], columns = columnsData)
 
     # Get all columns that are numerical questions so we know what to graph
     numQuestions = data.select_dtypes(include=['int64']).columns.values
@@ -116,7 +103,7 @@ def graph2(scoreData):
     recent_date = newData[dateColumn].max()
 
     # Removing all dates that are recent
-    newData = newData[newData.Date==recent_date]
+    newData = newData[newData.Timestamp==recent_date]
 
     # Group all rows with question, and then take the average.
     newData = newData.groupby(['Question']).mean().reset_index()
