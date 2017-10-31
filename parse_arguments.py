@@ -4,6 +4,7 @@ import logging
 
 from default import DEFAULT_FILE
 
+
 def parse_arguments(args):
     edu_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -19,7 +20,7 @@ def parse_arguments(args):
         help="Ignores student emails in responses",
         action="store_true", required=False
     )
-    
+
     edu_parser.add_argument(
         "-d", "--debug",
         help="Display diagnostic information",
@@ -39,12 +40,13 @@ def parse_arguments(args):
         help="Writes information from the spreadsheet to Archive directory",
         action="store_true", required=False
     )
-    
+
     edu_parser.add_argument(
-        "-g", "--graph",
+        "-g",
+        "--graph",
         help="Displays trend over time, average scores for each response, box plot for each entry",
-        action="store_true", required=False
-    )
-    
+        action="store_true",
+        required=False)
+
     arguments = edu_parser.parse_args(args)
     return arguments
