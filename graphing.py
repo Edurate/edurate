@@ -3,14 +3,14 @@ Input to all functions should be the data from csv
 pip3 install ggplot
 """
 
-from ggplot import *
-from pandas import DataFrame
-import pandas as pd
-from datetime import datetime
-
 import warnings
 warnings.filterwarnings('ignore')
 
+from ggplot import *
+from pandas import DataFrame
+from pandas import Series
+import pandas as pd
+from datetime import datetime
 
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
@@ -23,7 +23,7 @@ def graph(data):
     g3 = graph3(data)
 
     # Display generated graphs
-    #print(g1)
+    print(g1)
     print(g2)
     print(g3)
 
@@ -54,7 +54,7 @@ def graph1(scoreData):
 
     data = DataFrame(scoreData[1:], columns=scoreData[0])
 
-    # Get all columns that are numerical questions so we know what to graph
+    # Get all columns that arlabels = date_format("%Y-%m-%d")e numerical questions so we know what to graph
     numQuestions = data.select_dtypes(include=['int64']).columns.values
 
     # Melt data so that each question is in a seperate row
@@ -79,15 +79,15 @@ def graph1(scoreData):
 
     newData = pd.concat([newData, newData2])
 
-    print(str(newData))
+    newData[dateColumn] = newData[dateColumn].astype('int64')
 
     # Create time graph with seperate lines for each question
     g = ggplot(aes(x=dateColumn, y="Score", colour="Question"), newData) +\
         geom_point() +\
         geom_line() +\
         facet_grid("All") +\
-        scale_x_date(labels = date_format("%Y-%m-%d")) +\
-        labs(x = "Date", y = "Average Question Score") +\
+        scale_x_continuous(labels=[""],breaks=0) +\
+        labs(x = "Time", y = "Average Question Score") +\
         ggtitle("Question Scores Over Time")
 
     # Return graph
