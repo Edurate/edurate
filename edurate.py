@@ -12,6 +12,8 @@ from parse_arguments import parse_arguments
 from graphing import graph
 from archive_information import archive_information
 from edurate_gensim import gensim_analysis
+#from questions import add_question
+#from questions import remove_question
 
 if __name__ == "__main__":
     print("Welcome to Edurate")
@@ -26,7 +28,12 @@ if __name__ == "__main__":
     if(edu_args.graph == True):
         print("Graph")
         graph(data)
-        
+    #if(edu_args.add_question == True):
+        #url = raw_input("Please enter the url to your google form: ")
+        #add_question(url)
+    #if(edu_args.remove_question == True):
+        #url = raw_input("Please enter the url to your google form: ")
+        #remove_question(url)
     create_csv(spreadsheet_list)
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
