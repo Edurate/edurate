@@ -34,12 +34,24 @@ def parse_arguments(args):
         action="store_true",
         required=False
     )
-    
+
     edu_parser.add_argument(
         "-d", "--debug",
         help="Display diagnostic information",
         action="store_const", dest="logging_level",
         const=logging.DEBUG, default=logging.ERROR
+    )
+
+    edu_parse.add_argument(
+    "-a", "--add_question",
+    help="Adds a question to the google form",
+    required=False
+    )
+
+    edu_parse.add_argument(
+    "-r", "--remove_question",
+    help="Removes a question to the google form",
+    required=False
     )
 
     arguments = edu_parser.parse_args(args)
