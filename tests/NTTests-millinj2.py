@@ -11,24 +11,15 @@ import pytest
 import glob
 import os
 from flake8.api import legacy as flake8
-#import parse_arguments
-#import logging
-import graphing
-from ggplot import *
+import parse_arguments
+import logging
 
-def test_convertToInts():
-    """Testing the convertToInts() function"""
-    list = [["Some", "Something", "1", "2", "3"]]
-    desired_output_string = [["Some", "Something", 1, 2, 3]]
-    actual_output_string = graphing.convertToInts(list)
-    assert len(list) == 5
-    assert(desired_output_string == actual_output_string) is True
 
-'''
 def test_parse_arguments1():
     args = []
     parsed_args = parse_arguments.parse_arguments(args)
     assert parsed_args.logging_level == logging.ERROR
+
 
 def test_parse_arguments2():
     args = ['--file', 'data.csv', '--debug']
@@ -36,20 +27,11 @@ def test_parse_arguments2():
     assert parsed_args.file == 'data.csv'
     assert parsed_args.logging_level == logging.DEBUG
 
+
 def test_parse_arguments3():
     args = ['--file', 'data.csv', '--confidential']
     parsed_args = parse_arguments.parse_arguments(args)
-    assert parsed_args.confidential == True
-
-def test_parse_arguments4():
-    args = ['--file', 'data.csv', '--spam']
-    parsed_args = parse_arguments.parse_arguments(args)
-
-    def test_parse_arguments4():
-    args = ['--file', 'data.csv', '--verbose']
-    parsed_args = parse_arguments.parse_arguments(args)
-
-'''
+    assert parsed_args.confidential
 
 
 # Linting Tests
