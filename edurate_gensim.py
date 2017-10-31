@@ -1,52 +1,67 @@
-import gensim
-import read_responses
-from gensim import corpora, models, similarities, matutils
-from pprint import pprint
-from collections import defaultdict
+from gensim import corpora
 from profanity import profanity
 from stop_words import get_stop_words
 from six import iteritems, viewitems
+import logging
 """ Uses gensim to analyze the text of the responses to the edurate evaluation """
 
 #from nltk.tokenize import RegexpTokenizer
 #from stop_words import get_stop_words
 #from nltk.stem.porter import PorterStemmer
 #from nltk.stem import WordNetLemmatizer
-from gensim import corpora, models
-import gensim
+
+
 def gensim_analysis(list_responses):
     tokens = create_tokens(list_responses)
     dictionary = dictionary_create(tokens)
     corp_eval(dictionary, tokens)
+
+    logging.info("Analyzes gensim and returns the repeated words")
+
+
 def create_tokens(list_responses):
     """Takes in the list of responses and makes each word a token"""
     stoplist = get_stop_words('en')
     texts = []
+    tokens = []
     for i in list_responses:
         texts.append(i.lower())
-    texts = [[word for word in texts.split()]for texts in texts]
-    tokens = []
+    texts = [[word for word in document.split()]
+        for document in list_responses]
     for i in texts:
-        if len(i)>2:
+        if len(i) > 2:
             temp = []
             for i in i:
-                if profanity.contains_profanity(i) == False:
+                if profanity.contains_profanity(i) is False:
                     if i not in stoplist:
                         temp.append(i)
             tokens.append(temp)
+    print(tokens)
     return(tokens)
+
+    logging.info("creates tokens from the responses")
+
 
 def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
-    corpus = [dictionary.doc2bow(token) for token in tokens]
-    #print(dictionary.token2id)
+    #corpus = [dictionary.doc2bow(token) for token in tokens]
+    # print(dictionary.token2id)
     #print(corpus)
+    #print(dictionary)
     return(dictionary)
-def corp_eval(dictionary, tokens):
 
-    non_repeat = [token for token, docfreq in iteritems(dictionary.dfs) if docfreq == 1]
+    logging.info("creates a dictionary using the tokens")
+
+
+def corp_eval(dictionary, tokens):
+    non_repeat = [
+        token for token,
+        docfreq in iteritems(
+            dictionary.dfs) if docfreq == 1]
     dictionary.filter_tokens(non_repeat)
     dictionary.compactify()
-    corpus = [dictionary.doc2bow(token) for token in tokens]
+    #corpus = [dictionary.doc2bow(token) for token in tokens]
     print(dictionary.token2id)
     print(viewitems(dictionary.dfs))
+    return(dictionary.dfs)
+    logging.info("Evaluates the dictionary to see if words are repeated")
