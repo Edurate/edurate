@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime
 import os
+import logging
 
 
 def archive_information(data):
@@ -14,6 +15,7 @@ def archive_information(data):
         csvWriter = csv.writer(csvFile)
         csvWriter.writerows(data)
 
+    logging.info("CSV gets written by 2d list for archive")
 """ future feature """
 def getArchivedData():
     """ Returns all old data from latest archived csv """
@@ -32,3 +34,5 @@ def getArchivedData():
     with open("./archive/" + fileName, 'r') as csvFile:
         reader = csv.reader(csvFile)
         return list(reader)[1:]
+
+    logging.info("Returns archive from the oldest one")
