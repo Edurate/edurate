@@ -8,6 +8,7 @@ from spreadsheet import *
 from parse_arguments import parse_arguments
 from read_responses import read_responses
 from parse_arguments import parse_arguments
+from edurate_gensim import gensim_analysis
 
 
 if __name__ == "__main__":
@@ -33,3 +34,6 @@ if __name__ == "__main__":
     # for response in res:
     # print(response)
     print(res)
+    #for response in res:
+        #print(response)
+    gensim_analysis(res)
