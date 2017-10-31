@@ -33,7 +33,7 @@ if __name__ == "__main__":
     res = read_responses(edu_args.file, edu_args.confidential)
     # for response in res:
     # print(response)
-    print(res)
+    #print(res)
     # for response in res:
     # print(response)
     gensim_analysis(res)

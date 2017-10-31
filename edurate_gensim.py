@@ -22,7 +22,7 @@ def create_tokens(list_responses):
     texts = []
     for i in list_responses:
         texts.append(i.lower())
-    texts = [word for word in texts.split()]
+    texts = [[word for word in texts.split()]for texts in texts]
     tokens = []
     for i in texts:
         if len(i) > 2:
