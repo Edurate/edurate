@@ -14,7 +14,7 @@ def archive_information(data):
         csvWriter = csv.writer(csvFile)
         csvWriter.writerows(data)
 
-
+""" future feature """
 def getArchivedData():
     """ Returns all old data from latest archived csv """
 

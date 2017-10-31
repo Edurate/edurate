@@ -23,7 +23,7 @@ def graph(data):
     g3 = graph3(data)
 
     # Display generated graphs
-    print(g1)
+    #print(g1)
     print(g2)
     print(g3)
 
