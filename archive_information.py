@@ -16,7 +16,7 @@ def archive_information(data):
 
 """ future feature """
 def getArchivedData():
-    """ Returns all old data from latest archived csv """
+    """ Updates what is now the latest data gathered to csv file """
 
     latest = None
     for fil in os.listdir("./archive"):
