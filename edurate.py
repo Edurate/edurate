@@ -5,7 +5,7 @@ from spreadsheet import read_from_spreadsheet
 from spreadsheet import create_csv
 from parse_arguments import parse_arguments
 from read_responses import read_responses
-from edurate_gensim import create_tokens
+from edurate_gensim import gensim_analysis
 
 if __name__ == "__main__":
     print("Welcome to Edurate")
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     res = read_responses(edu_args.file, edu_args.confidential)
     #for response in res:
             #print(response)
-    create_tokens(res)
+    gensim_analysis(res)
