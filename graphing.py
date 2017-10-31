@@ -3,14 +3,14 @@ Input to all functions should be the data from csv
 pip3 install ggplot
 """
 
+import warnings
+warnings.filterwarnings('ignore')
+
 from ggplot import *
 from pandas import DataFrame
 import pandas as pd
 from datetime import datetime
-
-import warnings
-warnings.filterwarnings('ignore')
-
+import logging
 
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
@@ -27,6 +27,8 @@ def graph(data):
     print(g2)
     print(g3)
 
+    logging.info("Calls and prints graphical data")
+
 
 def convertToInts(data):
     """ The numerical answers in the input comes in as strings. Convert these to integers so they can be graphed. """
@@ -41,11 +43,15 @@ def convertToInts(data):
         output.append(cur)
     return output
 
+    logging.info("Converts strings to integers for analysis")
+
 def findTimeStamp(data):
     columns = data[0]
     for i in range(0,len(columns)):
         if columns[i] == "Timestamp":
             return i
+
+    logging.info("finds the timestamp from the responses")
 
 def graph1(scoreData):
     """ Average score as time goes on """
@@ -93,6 +99,7 @@ def graph1(scoreData):
     # Return graph
     return g
 
+    logging.info("Creates and returns graph 1, a line graph")
 
 def graph2(scoreData):
     """ Average scores for each question on most recent date """
@@ -137,6 +144,8 @@ def graph2(scoreData):
     # Return graph
     return g2
 
+    logging.info("Creates and returns graph 2, a bar graph")
+
 
 def graph3(scoreData):
     """ Box plot for scores """
@@ -172,3 +181,5 @@ def graph3(scoreData):
 
     # Return graph
     return g3
+
+    logging,info("Creates and returns graph 3, a box plot")
