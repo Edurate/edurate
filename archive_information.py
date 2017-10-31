@@ -1,10 +1,11 @@
 import csv
 from datetime import datetime
 import os
+import logging
 
 
 def archive_information(data):
-    """ Recieves 2d list of responses and saves them to csv archive """
+    """ Saves dates to csv file so that inmrovment can be documented"""
 
     today = datetime.now()
     fileName = str(today.month) + "-" + str(today.day) + \
@@ -14,9 +15,14 @@ def archive_information(data):
         csvWriter = csv.writer(csvFile)
         csvWriter.writerows(data)
 
+    logging.info("CSV gets written by 2d list for archive")
+
+
 """ future feature """
+
+
 def getArchivedData():
-    """ Returns all old data from latest archived csv """
+    """ Updates what is now the latest data gathered to csv file """
 
     latest = None
     for fil in os.listdir("./archive"):
@@ -32,3 +38,5 @@ def getArchivedData():
     with open("./archive/" + fileName, 'r') as csvFile:
         reader = csv.reader(csvFile)
         return list(reader)[1:]
+
+    logging.info("Returns archive from the oldest one")

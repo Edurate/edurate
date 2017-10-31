@@ -20,13 +20,16 @@ if __name__ == "__main__":
     edu_args = parse_arguments(sys.argv[1:])
     spreadsheet_list = read_from_spreadsheet()
     data = getGraphData(spreadsheet_list, edu_args.confidential)
-    if(edu_args.archive == True):
+    if(edu_args.archive):
         print("Archive")
         archive_information(data)
-    if(edu_args.graph == True):
+    if(edu_args.graph):
         print("Graph")
         graph(data)
-        
+
     create_csv(spreadsheet_list)
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
+
+    logging.info("Analyzes the Google form responses with gensim and " +
+                 "returns the repeated words, graphs, or archives the file")
