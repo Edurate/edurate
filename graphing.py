@@ -12,6 +12,7 @@ import pandas as pd
 from datetime import datetime
 import logging
 
+
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
     # Get all data because we need to see trend over time
@@ -23,7 +24,7 @@ def graph(data):
     g3 = graph3(data)
 
     # Display generated graphs
-    #print(g1)
+    # print(g1)
     print(g2)
     print(g3)
 
@@ -45,13 +46,15 @@ def convertToInts(data):
 
     logging.info("Converts strings to integers for analysis")
 
+
 def findTimeStamp(data):
     columns = data[0]
-    for i in range(0,len(columns)):
+    for i in range(0, len(columns)):
         if columns[i] == "Timestamp":
             return i
 
     logging.info("finds the timestamp from the responses")
+
 
 def graph1(scoreData):
     """ Average score as time goes on """
@@ -92,8 +95,8 @@ def graph1(scoreData):
         geom_point() +\
         geom_line() +\
         facet_grid("All") +\
-        scale_x_date(labels = date_format("%Y-%m-%d")) +\
-        labs(x = "Date", y = "Average Question Score") +\
+        scale_x_date(labels=date_format("%Y-%m-%d")) +\
+        labs(x="Date", y="Average Question Score") +\
         ggtitle("Question Scores Over Time")
 
     # Return graph
@@ -101,13 +104,14 @@ def graph1(scoreData):
 
     logging.info("Creates and returns graph 1, a line graph")
 
+
 def graph2(scoreData):
     """ Average scores for each question on most recent date """
 
     dateColumn = scoreData[0][findTimeStamp(scoreData)]
 
     columnsData = scoreData[0]
-    for i in range(0,len(columnsData)):
+    for i in range(0, len(columnsData)):
         columnsData[i] = columnsData[i].split('.')[0]
 
     data = DataFrame(scoreData[1:], columns=columnsData)
@@ -182,4 +186,4 @@ def graph3(scoreData):
     # Return graph
     return g3
 
-    logging,info("Creates and returns graph 3, a box plot")
+    logging, info("Creates and returns graph 3, a box plot")
