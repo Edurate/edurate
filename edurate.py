@@ -7,6 +7,8 @@ from spreadsheet import getGraphData
 from spreadsheet import *
 from parse_arguments import parse_arguments
 from read_responses import read_responses
+from parse_arguments import parse_arguments
+
 
 if __name__ == "__main__":
     print("Welcome to Edurate")
@@ -20,7 +22,6 @@ if __name__ == "__main__":
         print("Archive")
     if(edu_args.graph == True):
         print("Graph")
-        
     spreadsheet_list = read_from_spreadsheet()
     data = getGraphData(spreadsheet_list, edu_args.confidential)
     #print(data)
@@ -32,5 +33,3 @@ if __name__ == "__main__":
     #for response in res:
         #print(response)
     print(res)
-    
-
