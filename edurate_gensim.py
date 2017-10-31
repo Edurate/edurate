@@ -37,26 +37,18 @@ def create_tokens(list_responses):
 def corpus_create(tokens):
     dictionary = corpora.Dictionary(tokens)
     corpus = [dictionary.doc2bow(token) for token in tokens]
-    print(dictionary.token2id)
-    print(corpus)
+    #print(dictionary.token2id)
+    #print(corpus)
 
    # "Removes elements that were not repeated"
-    #frequency = defaultdict(int)
-    #for token in tokens:
-    #    for i in token:
-    #        frequency[i] += 1
+    frequency = defaultdict(int)
+    for token in tokens:
+        for i in token:
+            frequency[i] += 1
 
-    #texts = [[token for token in text if frequency[token] > 1]
-    #         for text in texts]
-    #dict = corpora.Dictionary(texts)
-    #corpus = [dict.doc2bow(i) for i in texts]
-    #print(corpus)
-    #dictionary = corpora.Dictionary(tokens)
-#    corpus = [dictionary.doc2bow(token) for token in tokens]
-    #print(dictionary.token2id)
-    #User-interaction "Ask user if they'd like to explore the words repeated (Y/N)
-    #If yes, "prompt user to type in the Id number, or press x to exit", pulls that word from the csv file. This
-    #will work if we change the code so that it assigns all words to a number, and then removes the stop and
-    #repeated words.
-
+    texts = [[token for token in tokens if frequency[token] > 1]
+             for token in tokens]
+    dict = corpora.Dictionary(texts)
+    corpus = [dict.doc2bow(i) for i in texts]
+    print(corpus)
 #def corp_eval():
