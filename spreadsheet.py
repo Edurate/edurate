@@ -36,13 +36,12 @@ def getGraphData(spreadsheet_list, conf):
             if key == "Email Address" and conf:
                 continue
             elif key == "Timestamp":
-                new.insert(0, value.split(" ")[0])
+                new.append(value.split(" ")[0])
             else:
                 new.append(value)
         output.append(new)
 
     return output
-
 
 def filterDates(data):
     maxDate = datetime(2000, 1, 1, 0, 0).date()
