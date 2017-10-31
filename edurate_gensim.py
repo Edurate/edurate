@@ -18,6 +18,7 @@ def gensim_analysis(list_responses):
 
     logging.info("Analyzes gensim and returns the repeated words")
 
+
 def create_tokens(list_responses):
     """Takes in the list of responses and makes each word a token"""
     stoplist = get_stop_words('en')
@@ -38,14 +39,16 @@ def create_tokens(list_responses):
 
     logging.info("creates tokens from the responses")
 
+
 def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
-    corpus = [dictionary.doc2bow(token) for token in tokens]
+    #corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(dictionary.token2id)
     # print(corpus)
     return(dictionary)
 
     logging.info("creates a dictionary using the tokens")
+
 
 def corp_eval(dictionary, tokens):
 
@@ -55,7 +58,7 @@ def corp_eval(dictionary, tokens):
             dictionary.dfs) if docfreq == 1]
     dictionary.filter_tokens(non_repeat)
     dictionary.compactify()
-    corpus = [dictionary.doc2bow(token) for token in tokens]
+    #corpus = [dictionary.doc2bow(token) for token in tokens]
     print(dictionary.token2id)
     print(viewitems(dictionary.dfs))
 

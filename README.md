@@ -21,7 +21,8 @@ pip install -r requirements.txt
 
 ## Initial Setup
 
-Install gspread as well as oauth2client in you root directory in the repository using the command:
+Install gspread as well as oauth2client in you root directory in the repository
+using the command:
 
 ```shell
 python3 -m pip install --user gspread oauth2client
@@ -63,7 +64,7 @@ will not.
 
 The test suite verifies Edurate's functions. The first function that is tested
 is to make sure that the questionnaires are properly downloaded and transferred
-into a usable spreadsheet. Then all argparsers are verified. 
+into a usable spreadsheet. Then all argparsers are verified.
 
 ### Running the Test Suite
 
