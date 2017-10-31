@@ -31,7 +31,3 @@ def getArchivedData():
     with open("./archive/"+fileName, 'r') as csvFile:
         reader = csv.reader(csvFile)
         return list(reader)[1:]
-
-testData = [["Date","Name","Textual Question", "Question 1", "Question 2", "Question 3"],["11/7/2017","dillam","Answer to textual question","2","1","3"],["11/7/2017","austin","Answer to textual question","5","5","5"],["11/7/2017","bob","Answer to textual question","6","4","5"],["11/7/2017","john","Answer to textual question","5","4","7"],["11/7/2017","joe","Answer to textual question","5","5","6"]]
-
-archive_information(testData)
