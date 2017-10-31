@@ -10,5 +10,7 @@ if __name__ == "__main__":
     print(edu_args.file)
     if(edu_args.confidential):
         print("Confidential")
-    if(edu_args.spam):
-        print("Spam")
+    if(edu_args.archive == True):
+        print("Archive")
+    if(edu_args.graph == True):
+        print("Graph")
