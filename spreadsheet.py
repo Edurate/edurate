@@ -40,6 +40,16 @@ def getGraphData(spreadsheet_list, conf):
 
     return output
 
+def flip_responses(data):
+    newList = list()
+    for i in range(0, len(data[0])):
+        new = list()
+        for row in data:
+            new.append(row[i])
+        newList.append(new)
+    print(newList)
+    return newList
+
 def filterDates(data):
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     current = list()
