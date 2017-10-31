@@ -2,6 +2,7 @@
 import argparse
 import logging
 
+from default import DEFAULT_FILE
 def parse_arguments(args):
     edu_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -9,18 +10,12 @@ def parse_arguments(args):
     edu_parser.add_argument(
         "-f", "--file",
         help="File containing the responses",
-        type=str, required=True
+        type=str, required=False, default=DEFAULT_FILE
     )
     
     edu_parser.add_argument(
         "-c", "--confidential",
         help="Ignores student emails in responses",
-        action="store_true", required=False
-    )
-    
-    edu_parser.add_argument(
-        "-s", "--spam",
-        help="Removes spam from the responses",
         action="store_true", required=False
     )
     
@@ -36,6 +31,18 @@ def parse_arguments(args):
         help="Display confirmation information",
         action="store_const", dest="logging_level", 
         const=logging.INFO
+    )
+    
+    edu_parser.add_argument(
+        "-a", "--archive",
+        help="Writes information from the spreadsheet to Archive directory",
+        action="store_true", required=False
+    )
+    
+    edu_parser.add_argument(
+        "-g", "--graph",
+        help="Displays trend over time, average scores for each response, box plot for each entry",
+        action="store_true", required=False
     )
     
     arguments = edu_parser.parse_args(args)
