@@ -62,8 +62,8 @@ will not.
 ### Functions Tested
 
 The test suite verifies Edurate's functions. The first function that is tested
-it to make sure that the questionnaires are properly downloaded and transferred
-into a usable spreadsheet.
+is to make sure that the questionnaires are properly downloaded and transferred
+into a usable spreadsheet. Then all argparsers are verified. 
 
 ### Running the Test Suite
 
