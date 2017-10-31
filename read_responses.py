@@ -1,3 +1,6 @@
+""" remove this file, unnecessary """
+
+
 """ Reads the .cvs file and returns the information stored inside """
 import csv
 from pathlib import Path
