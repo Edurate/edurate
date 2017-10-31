@@ -21,12 +21,12 @@ if __name__ == "__main__":
     edu_args = parse_arguments(sys.argv[1:])
     spreadsheet_list = read_from_spreadsheet()
     data = getGraphData(spreadsheet_list, edu_args.confidential)
-    
+    archive_info = data
     if(edu_args.archive):
-        print("Archive")
-        archive_information(filterDates(list(data)))
+        print("Archiving Information...")
+        archive_information(filterDates(list(archive_info)))
     if(edu_args.graph):
-        print("Graph")
+        print("Creating Graphs...")
         graph(data)
 
     create_csv(spreadsheet_list)
