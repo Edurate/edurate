@@ -42,16 +42,16 @@ def parse_arguments(args):
         const=logging.DEBUG, default=logging.ERROR
     )
 
-    edu_parse.add_argument(
-    "-a", "--add_question",
+    edu_parser.add_argument(
+    "-add", "--add_question",
     help="Adds a question to the google form",
-    required=False
+    required=False, action="store_true"
     )
 
-    edu_parse.add_argument(
-    "-r", "--remove_question",
+    edu_parser.add_argument(
+    "-del", "--delete_question",
     help="Removes a question to the google form",
-    required=False
+    required=False, action="store_true"
     )
 
     arguments = edu_parser.parse_args(args)
