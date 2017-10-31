@@ -46,8 +46,8 @@ def getGraphData(spreadsheet_list, conf):
 def filterDates(data):
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     current = list()
-    for entry in data[1:]:
-        # print(entry[0])
+    for entry in data:
+        print(entry)
         date = datetime.strptime(entry[0], '%m/%d/%Y').date()
         if(date > maxDate):
             maxDate = date
@@ -58,53 +58,48 @@ def filterDates(data):
             current.append(entry)
     for x in current:
         print(x)
-
+    return current
 
 def create_csv(spreadsheet_list):
     """ creates the csv file """
     # returns True when funciton is completed
     logging.info("Creating a list of lists of students")
     formatted_list = list()
+    # grabs questions from spreadsheet
     for entry in spreadsheet_list:
-        questions = [None] * 12
-        maxDate = datetime(2000, 1, 1, 0, 0).date()
-        formatted_entry = [None] * 12
+        questions = [None]*12
         for question, response in entry.items():
-            # grabs questions from spreadsheet
-            for entry in spreadsheet_list:
-                questions = [None] * 12
-                for question, response in entry.items():
-                    if question[:2] == '1.':
-                        questions.pop(2)
-                        questions.insert(2, question)
-                    elif question[:2] == '2.':
-                        questions.pop(3)
-                        questions.insert(3, question)
-                    elif question[:2] == '3.':
-                        questions.pop(4)
-                        questions.insert(4, question)
-                    elif question[:2] == '4.':
-                        questions.pop(5)
-                        questions.insert(5, question)
-                    elif question[:2] == '5.':
-                        questions.pop(6)
-                        questions.insert(6, question)
-                    elif question[:2] == '6.':
-                        questions.pop(7)
-                        questions.insert(7, question)
-                    elif question[:2] == '7.':
-                        questions.pop(8)
-                        questions.insert(8, question)
-                    elif question[:2] == '8.':
-                        questions.pop(9)
-                        questions.insert(9, question)
-                    elif question[:2] == '9.':
-                        questions.pop(10)
-                        questions.insert(10, question)
-                    elif question[:3] == '10.':
-                        questions.pop(11)
-                        questions.insert(11, question)
-                    break
+            if question[:2] == '1.':
+                questions.pop(2)
+                questions.insert(2, question)
+            elif question[:2] == '2.':
+                questions.pop(3)
+                questions.insert(3, question)
+            elif question[:2] == '3.':
+                questions.pop(4)
+                questions.insert(4, question)
+            elif question[:2] == '4.':
+                questions.pop(5)
+                questions.insert(5, question)
+            elif question[:2] == '5.':
+                questions.pop(6)
+                questions.insert(6, question)
+            elif question[:2] == '6.':
+                questions.pop(7)
+                questions.insert(7, question)
+            elif question[:2] == '7.':
+                questions.pop(8)
+                questions.insert(8, question)
+            elif question[:2] == '8.':
+                questions.pop(9)
+                questions.insert(9, question)
+            elif question[:2] == '9.':
+                questions.pop(10)
+                questions.insert(10, question)
+            elif question[:3] == '10.':
+                questions.pop(11)
+                questions.insert(11, question)
+        break
     # grabs responses to questions from each user
     for entry in spreadsheet_list:
         maxDate = datetime(2000, 1, 1, 0, 0).date()
