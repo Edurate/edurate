@@ -41,11 +41,16 @@ def convertToInts(data):
         output.append(cur)
     return output
 
+def findTimeStamp(data):
+    columns = data[0]
+    for i in range(0,len(columns)):
+        if columns[i] == "Timestamp":
+            return i
 
 def graph1(scoreData):
     """ Average score as time goes on """
 
-    dateColumn = scoreData[0][0]
+    dateColumn = scoreData[0][findTimeStamp(scoreData)]
 
     data = DataFrame(scoreData[1:], columns=scoreData[0])
 
@@ -74,13 +79,15 @@ def graph1(scoreData):
 
     newData = pd.concat([newData, newData2])
 
+    print(str(newData))
+
     # Create time graph with seperate lines for each question
     g = ggplot(aes(x=dateColumn, y="Score", colour="Question"), newData) +\
         geom_point() +\
         geom_line() +\
         facet_grid("All") +\
-        scale_x_date(labels=date_format("%Y-%m-%d"), breaks=date_breaks('1 month')) +\
-        labs(x="Date", y="Average Question Score") +\
+        scale_x_date(labels = date_format("%Y-%m-%d")) +\
+        labs(x = "Date", y = "Average Question Score") +\
         ggtitle("Question Scores Over Time")
 
     # Return graph
@@ -90,10 +97,10 @@ def graph1(scoreData):
 def graph2(scoreData):
     """ Average scores for each question on most recent date """
 
-    dateColumn = scoreData[0][0]
+    dateColumn = scoreData[0][findTimeStamp(scoreData)]
 
     columnsData = scoreData[0]
-    for i in range(1, len(columnsData)):
+    for i in range(0,len(columnsData)):
         columnsData[i] = columnsData[i].split('.')[0]
 
     data = DataFrame(scoreData[1:], columns=columnsData)
@@ -134,7 +141,7 @@ def graph2(scoreData):
 def graph3(scoreData):
     """ Box plot for scores """
 
-    dateColumn = scoreData[0][0]
+    dateColumn = scoreData[0][findTimeStamp(scoreData)]
 
     data = DataFrame(scoreData[1:], columns=scoreData[0])
 
