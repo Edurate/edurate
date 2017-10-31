@@ -32,5 +32,3 @@ if __name__ == "__main__":
     create_csv(spreadsheet_list)
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
-
-    
