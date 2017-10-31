@@ -42,7 +42,7 @@ def create_tokens(list_responses):
 
 def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
-    corpus = [dictionary.doc2bow(token) for token in tokens]
+    #corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(dictionary.token2id)
     #print(corpus)
     #print(dictionary)
