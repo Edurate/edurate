@@ -1,5 +1,5 @@
 from oauth2client.service_account import ServiceAccountCredentials
-from google.appengine.ext import webapp
+import gspread
 
 def add_question(url):
     urlSplit = url.split("/")
@@ -35,6 +35,6 @@ def remove_question(url):
         'Edurate_Client.json', scope)
     client = gspread.authorize(creds)
     # Open a form by ID.
-    form = FormApp.openById(formID);
+    form = FormApp.openById(formID)
     questionToRemove = input("Enter the title of the question to be removed: ")
     form.deleteItem(questionToRemove)
