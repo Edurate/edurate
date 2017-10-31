@@ -72,6 +72,7 @@ def filterDates(data):
         print(x)
     return current
 
+
 def create_csv(spreadsheet_list):
     """ creates the csv file """
     # returns True when funciton is completed
