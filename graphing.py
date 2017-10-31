@@ -13,6 +13,7 @@ import pandas as pd
 from datetime import datetime
 import logging
 
+
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
     # Get all data because we need to see trend over time
@@ -63,7 +64,8 @@ def graph1(scoreData):
 
     data = DataFrame(scoreData[1:], columns=scoreData[0])
 
-    # Get all columns that arlabels = date_format("%Y-%m-%d")e numerical questions so we know what to graph
+    # Get all columns that arlabels = date_format("%Y-%m-%d")e numerical
+    # questions so we know what to graph
     numQuestions = data.select_dtypes(include=['int64']).columns.values
 
     # Melt data so that each question is in a seperate row
@@ -95,8 +97,8 @@ def graph1(scoreData):
         geom_point() +\
         geom_line() +\
         facet_grid("All") +\
-        scale_x_continuous(labels=[""],breaks=0) +\
-        labs(x = "Time", y = "Average Question Score") +\
+        scale_x_continuous(labels=[""], breaks=0) +\
+        labs(x="Time", y="Average Question Score") +\
         ggtitle("Question Scores Over Time")
 
     # Return graph
