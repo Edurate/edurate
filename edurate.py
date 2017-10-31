@@ -28,12 +28,12 @@ if __name__ == "__main__":
     if(edu_args.graph == True):
         print("Graph")
         graph(data)
-    #if(edu_args.add_question == True):
-        #url = raw_input("Please enter the url to your google form: ")
-        #add_question(url)
-    #if(edu_args.remove_question == True):
-        #url = raw_input("Please enter the url to your google form: ")
-        #remove_question(url)
+    if(edu_args.add_question == True):
+        url = raw_input("Please enter the url to your google form: ")
+        add_question(url)
+    if(edu_args.remove_question == True):
+        url = raw_input("Please enter the url to your google form: ")
+        remove_question(url)
     create_csv(spreadsheet_list)
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
