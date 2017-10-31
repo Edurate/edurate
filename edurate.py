@@ -34,6 +34,6 @@ if __name__ == "__main__":
     # for response in res:
     # print(response)
     print(res)
-    #for response in res:
-        #print(response)
+    # for response in res:
+    # print(response)
     gensim_analysis(res)

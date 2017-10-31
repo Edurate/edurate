@@ -43,6 +43,7 @@ def getGraphData(spreadsheet_list, conf):
 
     return output
 
+
 def filterDates(data):
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     current = list()
@@ -68,11 +69,11 @@ def create_csv(spreadsheet_list):
     for entry in spreadsheet_list:
         questions = [None] * 12
         maxDate = datetime(2000, 1, 1, 0, 0).date()
-        formatted_entry = [None]*12
+        formatted_entry = [None] * 12
         for question, response in entry.items():
-    # grabs questions from spreadsheet
+            # grabs questions from spreadsheet
             for entry in spreadsheet_list:
-                questions = [None]*12
+                questions = [None] * 12
                 for question, response in entry.items():
                     if question[:2] == '1.':
                         questions.pop(2)
@@ -159,7 +160,6 @@ def create_csv(spreadsheet_list):
             if(entry[0] < maxDate):
                 formatted_list.pop(formatted_list.index(entry))
     formatted_list.insert(0, questions)
-
 
     logging.info("Writing formatted data to CSV file")
     logging.debug("CSV file name: " + "data.csv")
