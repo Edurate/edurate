@@ -26,7 +26,10 @@ if __name__ == "__main__":
     if(edu_args.graph == True):
         print("Graph")
         graph(data)
-        
+
     create_csv(spreadsheet_list)
     res = read_responses(edu_args.file, edu_args.confidential)
     gensim_analysis(res)
+
+    logging.info("Analyzes the Google form responses with gensim and " +
+            "returns the repeated words, graphs, or archives the file")

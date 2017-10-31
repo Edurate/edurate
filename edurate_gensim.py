@@ -2,6 +2,7 @@ from gensim import corpora
 from profanity import profanity
 from stop_words import get_stop_words
 from six import iteritems, viewitems
+import logging
 """ Uses gensim to analyze the text of the responses to the edurate evaluation """
 
 #from nltk.tokenize import RegexpTokenizer
@@ -15,6 +16,7 @@ def gensim_analysis(list_responses):
     dictionary = dictionary_create(tokens)
     corp_eval(dictionary, tokens)
 
+    logging.info("Analyzes gensim and returns the repeated words")
 
 def create_tokens(list_responses):
     """Takes in the list of responses and makes each word a token"""
@@ -34,6 +36,7 @@ def create_tokens(list_responses):
             tokens.append(temp)
     return(tokens)
 
+    logging.info("creates tokens from the responses")
 
 def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
@@ -42,6 +45,7 @@ def dictionary_create(tokens):
     # print(corpus)
     return(dictionary)
 
+    logging.info("creates a dictionary using the tokens")
 
 def corp_eval(dictionary, tokens):
 
@@ -54,3 +58,5 @@ def corp_eval(dictionary, tokens):
     corpus = [dictionary.doc2bow(token) for token in tokens]
     print(dictionary.token2id)
     print(viewitems(dictionary.dfs))
+
+    logging.info("Evaluates the dictionary to see if words are repeated")

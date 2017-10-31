@@ -1,11 +1,5 @@
 # Run pytest tests to run the program and check code
-# Install autopep8 and pep8
-# pip install autopep8
-# pip install pep8
-# pip install pytest-flake8
-# To fix many issues, type the following into the terminal
-# autopep8 --in-place  --aggressive --aggressive  *.py
-# If it still fails, go to the code that is specified and change it
+
 import glob
 import os
 from flake8.api import legacy as flake8
