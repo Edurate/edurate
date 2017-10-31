@@ -17,12 +17,12 @@ if __name__ == "__main__":
 
     edu_args = parse_arguments(sys.argv[1:])
     print(edu_args.file)
-    if(edu_args.confidential):
-        print("Confidential")
-    if(edu_args.archive == True):
-        print("Archive")
-    if(edu_args.graph == True):
-        print("Graph")
+    # if(edu_args.confidential):
+    # #    print("Confidential")
+    # if(edu_args.archive == True):
+    # #    print("Archive")
+    # if(edu_args.graph == True):
+    # #    print("Graph")
     spreadsheet_list = read_from_spreadsheet()
     data = getGraphData(spreadsheet_list, edu_args.confidential)
     #print(data)
@@ -31,6 +31,8 @@ if __name__ == "__main__":
     # sends file name supplied by user and if confidential
     # and gets the responses from the csv file
     res = read_responses(edu_args.file, edu_args.confidential)
+    res = flip_responses(data)
     #for response in res:
         #print(response)
-    gensim_analysis(res)
+    for i in res[7:]:
+        gensim_analysis(i)

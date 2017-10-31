@@ -47,7 +47,7 @@ def flip_responses(data):
         for row in data:
             new.append(row[i])
         newList.append(new)
-    print(newList)
+    #print(newList)
     return newList
 
 def filterDates(data):
