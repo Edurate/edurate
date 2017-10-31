@@ -20,7 +20,7 @@ def read_from_spreadsheet():
     list_of_hashes = sheet.get_all_records()
     return list_of_hashes
 
-def getGraphData(spreadsheet_list):
+def getGraphData(spreadsheet_list, conf):
     new = list()
     for key in spreadsheet_list[0].keys():
         new.append(key)
@@ -29,12 +29,13 @@ def getGraphData(spreadsheet_list):
     for dictionary in spreadsheet_list:
         new = list()
         date = False
-        for response in dictionary.values():
-            if (not date):
-                new.append(response.split(" ")[0])
+        for key, value in dictionary.items():
+            if key == "Email Address" and conf:
+                continue
+            elif key == "Timestamp":
+                new.append(value.split(" ")[0])
             else:
-                new.append(response)
-            date = True
+                new.append(value)
         output.append(new)
 
     return output
