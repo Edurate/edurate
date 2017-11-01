@@ -34,7 +34,9 @@ def create_tokens(list_responses):
     texts = []
     tokens = []
     for i in list_responses[1:]:
-        texts.append(i.lower())
+        print(i)
+        if i.isnumeric() == False:
+            texts.append(i.lower())
     texts = [[word for word in document.split()]
              for document in texts]
     for i in texts:
