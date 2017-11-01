@@ -77,6 +77,7 @@ def filterDates(data):
     for entry in data[1:]:
         if entry[timeColumn] == maxDate:
             current.append(entry)
+    return current
     #for x in current:
         #print(x)
 
