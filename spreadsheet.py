@@ -43,6 +43,7 @@ def getGraphData(spreadsheet_list, conf):
 
     return output
 
+
 def flip_responses(data):
     newList = list()
     for i in range(0, len(data[0])):
@@ -50,8 +51,9 @@ def flip_responses(data):
         for row in data:
             new.append(row[i])
         newList.append(new)
-    #print(newList)
+    # print(newList)
     return newList
+
 
 def filterDates(data):
     """ returns only the most current responses """
@@ -78,8 +80,9 @@ def filterDates(data):
         if entry[timeColumn] == maxDate:
             current.append(entry)
     return current
-    #for x in current:
-        #print(x)
+    # for x in current:
+    # print(x)
+
 
 def create_csv(spreadsheet_list):
     """ creates the csv file """

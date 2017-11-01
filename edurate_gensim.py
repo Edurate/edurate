@@ -15,13 +15,14 @@ import warnings
 #from nltk.stem.porter import PorterStemmer
 #from nltk.stem import WordNetLemmatizer
 
+
 def gensim_analysis(list_responses, q_count):
     """Completes the analysis for each answer"""
     warnings.filterwarnings('ignore')
     tokens = create_tokens(list_responses)
     dictionary = dictionary_create(tokens)
     corpus = [dictionary.doc2bow(token) for token in tokens]
-    #print(corpus)
+    # print(corpus)
     corp_eval(dictionary, tokens, corpus, q_count)
 
     logging.info("Analyzes gensim and returns the repeated words")
@@ -35,7 +36,7 @@ def create_tokens(list_responses):
     for i in list_responses[1:]:
         texts.append(i.lower())
     texts = [[word for word in document.split()]
-        for document in texts]
+             for document in texts]
     for i in texts:
         if len(i) > 2:
             temp = []
@@ -44,7 +45,7 @@ def create_tokens(list_responses):
                     if i not in stoplist:
                         temp.append(i)
             tokens.append(temp)
-    #print(tokens)
+    # print(tokens)
     return(tokens)
 
     logging.info("creates tokens from the responses")
@@ -55,9 +56,9 @@ def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
     #corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(dictionary.token2id)
-    #print(corpus)
-    #print(dictionary)
-    #print(corpus)
+    # print(corpus)
+    # print(dictionary)
+    # print(corpus)
     logging.info("creates a dictionary using the tokens")
     return(dictionary)
 
@@ -72,14 +73,21 @@ def corp_eval(dictionary, tokens, corpus, q_count):
         alpha='symmetric',
         eta=None)
     corpus = [dictionary.doc2bow(token) for token in tokens]
-    #print(dictionary.token2id)
-    #print(viewitems(dictionary.dfs))
-    print(Fore.GREEN + "This is the lda analysis for Question: ", q_count, Style.RESET_ALL)
+    # print(dictionary.token2id)
+    # print(viewitems(dictionary.dfs))
+    print(
+        Fore.GREEN +
+        "This is the lda analysis for Question: ",
+        q_count,
+        Style.RESET_ALL)
     print(lda)
     vis = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
     print(Fore.YELLOW + "These are the current topics:" + Style.RESET_ALL)
     print(lda.print_topics(i))
-    print(Fore.CYAN+"Showing the lda visually, please hit control+c to access the next set of responses:", Style.RESET_ALL)
+    print(
+        Fore.CYAN +
+        "Showing the lda visually, please hit control+c to access the next set of responses:",
+        Style.RESET_ALL)
     pyLDAvis.show(vis)
     logging.info("Evaluates the dictionary to see if words are repeated")
     return(dictionary.dfs)
