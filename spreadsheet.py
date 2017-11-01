@@ -63,8 +63,8 @@ def filterDates(data):
     for entry in data[1:]:
         if(entry[0] == maxDate):
             current.append(entry)
-    for x in current:
-        print(x)
+    #for x in current:
+        #print(x)
 
 def create_csv(spreadsheet_list):
     """ creates the csv file """
