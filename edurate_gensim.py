@@ -33,19 +33,18 @@ def create_tokens(list_responses):
     stoplist = get_stop_words('en')
     texts = []
     tokens = []
-    for i in list_responses[1:]:
-        print(i)
-        if i.isnumeric() == False:
-            texts.append(i.lower())
+
     texts = [[word for word in document.split()]
-             for document in texts]
+             for document in list_responses]
     for i in texts:
         if len(i) > 2:
             temp = []
             for i in i:
                 if profanity.contains_profanity(i) is False:
                     if i not in stoplist:
-                        temp.append(i)
+                        if i.isnumeric() == False:
+                            i.lower()
+                            temp.append(i)
             tokens.append(temp)
     # print(tokens)
     return(tokens)
