@@ -11,3 +11,7 @@ pyasn1-modules==0.1.5
 pycodestyle==2.3.1
 pyflakes==1.6.0
 pytest==3.2.3
+profanity==1.1
+stop_words==2015.2.23.1
+gensim==3.0.1
+ggplot==0.11.5
