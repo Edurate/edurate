@@ -1,3 +1,4 @@
+#integrates Travis so that code and documentation is held to the proper standards
 language: python
 python:
   - "3.5"
@@ -14,14 +15,17 @@ notifications:
 
 install:
   - pip install --upgrade pip
+  - pip3 install -r requirements.txt
   - pip3 install pytest-flake8
   - pip3 install autopep8
+  - pip3 install gspread oauth2client
   - pip3 install coveralls
 
 script:
   - mdl README.md
- #- coverage run --source tests -m py.test
- #- coverage report
+  - pytest tests
+  - coverage run --source tests -m py.test
+  - coverage report
 
-#after_success:
-  #coveralls
+after_success:
+  coveralls
