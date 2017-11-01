@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print("https://github.com/Edurate/edurate")
 
     edu_args = parse_arguments(sys.argv[1:])
-    print(edu_args.file)
+    #print(edu_args.file)
     if(edu_args.confidential):
         print("Confidential")
     if(edu_args.archive == True):
@@ -34,5 +34,7 @@ if __name__ == "__main__":
     res = flip_responses(data)
     # for response in res:
     #     print(response)
+    q_count = 7
     for i in res[7:11]:
-        gensim_analysis(i)
+        gensim_analysis(i, q_count)
+        q_count += 1
