@@ -11,6 +11,8 @@ def archive_information(data):
     fileName = str(today.month) + "-" + str(today.day) + \
         "-" + str(today.year) + ".csv"
     print(fileName)
+    if not os.path.exists("./archive/"):
+        os.makedirs("./archive/")
     with open("./archive/" + fileName, 'w+') as csvFile:
         csvWriter = csv.writer(csvFile)
         csvWriter.writerows(data)
