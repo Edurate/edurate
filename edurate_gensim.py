@@ -33,10 +33,16 @@ def create_tokens(list_responses):
     stoplist = get_stop_words('en')
     texts = []
     tokens = []
-    for i in list_responses[1:]:
-        texts.append(i.lower())
+
+    for i in list_responses:
+        if not isinstance(i, int):
+            texts.append(i.lower())
+        else:
+            continue
+
     texts = [[word for word in document.split()]
              for document in texts]
+
     for i in texts:
         if len(i) > 2:
             temp = []
