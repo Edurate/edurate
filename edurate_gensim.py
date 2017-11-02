@@ -34,17 +34,22 @@ def create_tokens(list_responses):
     texts = []
     tokens = []
 
+    for i in list_responses:
+        if not isinstance(i, int):
+            texts.append(i.lower())
+        else:
+            continue
+
     texts = [[word for word in document.split()]
-             for document in list_responses]
+             for document in texts]
+
     for i in texts:
         if len(i) > 2:
             temp = []
             for i in i:
                 if profanity.contains_profanity(i) is False:
                     if i not in stoplist:
-                        if i.isnumeric() == False:
-                            i.lower()
-                            temp.append(i)
+                        temp.append(i)
             tokens.append(temp)
     # print(tokens)
     return(tokens)
