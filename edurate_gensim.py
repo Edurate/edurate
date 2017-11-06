@@ -26,31 +26,19 @@ def gensim_analysis(list_responses, q_count):
 
 def create_tokens(list_responses):
     """Take in the list of responses and make each word a token."""
+    logging.info("Creating tokens")
     stoplist = get_stop_words('en')
-    texts = []
     tokens = []
 
-    for i in list_responses:
-        if not isinstance(i, int):
-            texts.append(i.lower())
-        else:
-            continue
-
-    texts = [[word for word in document.split()]
-             for document in texts]
-
-    for i in texts:
-        if len(i) > 2:
-            temp = []
-            for i in i:
-                if profanity.contains_profanity(i) is False:
-                    if i not in stoplist:
-                        temp.append(i)
+    for res in list_responses:
+        temp = []
+        for word in res.split():
+            if not isinstance(word, int) and not profanity.contains_profanity(word) and word not in stoplist:
+                temp.append(word)
+        if len(temp) > 0:
             tokens.append(temp)
-    # print(tokens)
-    return(tokens)
 
-    logging.info("creates tokens from the responses")
+    return tokens
 
 
 def dictionary_create(tokens):
