@@ -14,8 +14,9 @@ def read_responses(filepath, conf):
     with open(filepath, newline='') as csvfile:
         csvdata = list(csv.reader(csvfile, delimiter=','))
 
+def generate_responses(csvdata_list):		
     responses = list()
-    for record in csvdata:
+    for record in csvdata_list:
         # date of response
         responses.append(record[0])
         # if the responses are not confidential, include name
