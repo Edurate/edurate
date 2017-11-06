@@ -20,18 +20,28 @@ if __name__ == "__main__":
                  "returns the repeated words, graphs, or archives the file")
     edu_args = parse_arguments(sys.argv[1:])
     spreadsheet_list = read_from_spreadsheet()
-    data = getGraphData(spreadsheet_list, edu_args.confidential)
+    data = getGraphData(spreadsheet_list)
 
     if(edu_args.graph):
         print("Creating Graphs...")
         graph(data)
 
     create_csv(spreadsheet_list)
-    res = filterDates(read_responses(edu_args.file, edu_args.confidential))
-    res = flip_responses(res)
-    # for response in res:
-    #     print(response)
+    responses = read_responses(edu_args.file)
+    print("Non-filtered responses: " + str(responses) + "\n")
+    responses = filterDates(responses)
+    print("FILTERED RESPONSES")
+    for response in responses:
+        print(response)
+
+    print("FLIPPED RESPONSES")
+    responses = flip_responses(responses)
+    for response in responses:
+        print(response)
+    print("Flipped responses: " + str(responses))
     q_count = 7
-    for i in res[7:11]:
-        gensim_analysis(i, q_count)
+    for index, response in enumerate(responses[8:12]):
+        print("response: " + str(response))
+        print("q_count: " + str(q_count))
+        gensim_analysis(response, q_count)
         q_count += 1

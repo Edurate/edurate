@@ -6,7 +6,7 @@ from pathlib import Path
 # send function name of the file to be read and if names are confidential
 
 
-def read_responses(filepath, conf):
+def read_responses(filepath):
     # checks if the file exists
     if Path(filepath).is_file() is False:
         return "File Not Found"
@@ -15,13 +15,14 @@ def read_responses(filepath, conf):
         csvdata = list(csv.reader(csvfile, delimiter=','))
 
     responses = list()
-    for record in csvdata:
+    for record in csvdata[1:]:
         # date of response
-        responses.append(record[0])
+        row = list()
+        row.append(record[0])
         # if the responses are not confidential, include name
-        if(conf is False):
-            responses.append(record[1])
+        row.append(record[1])
         # responses to the questions
         for value in record[2:]:
-            responses.append(value)
+            row.append(value)
+        responses.append(row)
     return responses
