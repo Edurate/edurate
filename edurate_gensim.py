@@ -10,15 +10,15 @@ import gensim
 import warnings
 """ Uses gensim to analyze the text of the responses to the edurate evaluation """
 
-#from nltk.tokenize import RegexpTokenizer
-#from stop_words import get_stop_words
-#from nltk.stem.porter import PorterStemmer
-#from nltk.stem import WordNetLemmatizer
+# from nltk.tokenize import RegexpTokenizer
+# from stop_words import get_stop_words
+# from nltk.stem.porter import PorterStemmer
+# from nltk.stem import WordNetLemmatizer
 
 
 def gensim_analysis(list_responses, q_count):
     """Completes the analysis for each answer"""
-    warnings.filterwarnings('ignore')
+    # warnings.filterwarnings('ignore')
     tokens = create_tokens(list_responses)
     dictionary = dictionary_create(tokens)
     corpus = [dictionary.doc2bow(token) for token in tokens]
@@ -31,36 +31,26 @@ def gensim_analysis(list_responses, q_count):
 def create_tokens(list_responses):
     """Takes in the list of responses and makes each word a token"""
     stoplist = get_stop_words('en')
-    texts = []
+    # texts = []
     tokens = []
 
-    for i in list_responses:
-        if not isinstance(i, int):
-            texts.append(i.lower())
-        else:
-            continue
-
-    texts = [[word for word in document.split()]
-             for document in texts]
-
-    for i in texts:
-        if len(i) > 2:
-            temp = []
-            for i in i:
-                if profanity.contains_profanity(i) is False:
-                    if i not in stoplist:
-                        temp.append(i)
+    for res in list_responses:
+        temp = []
+        for word in res.split():
+            if not profanity.contains_profanity(word) and word not in stoplist and not isinstance(word, int):
+                temp.append(word)
+        if len(temp) > 0:
             tokens.append(temp)
-    # print(tokens)
-    return(tokens)
 
-    logging.info("creates tokens from the responses")
+    print("tokens " + str(tokens))
+    logging.info("Tokens created")
+    return tokens
 
 
 def dictionary_create(tokens):
-    """Creates the dictionary from the tokens of the answer"""
+    """Create the dictionary from the tokens of the answer."""
     dictionary = corpora.Dictionary(tokens)
-    #corpus = [dictionary.doc2bow(token) for token in tokens]
+    # corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(dictionary.token2id)
     # print(corpus)
     # print(dictionary)
@@ -71,6 +61,9 @@ def dictionary_create(tokens):
 
 def corp_eval(dictionary, tokens, corpus, q_count):
     i = len(tokens)
+    print("dict " + str(dictionary))
+    print("tokens "+str(tokens))
+    print("corpus "+str(corpus))
     lda = gensim.models.ldamodel.LdaModel(
         corpus,
         id2word=dictionary,
@@ -78,9 +71,9 @@ def corp_eval(dictionary, tokens, corpus, q_count):
         passes=1,
         alpha='symmetric',
         eta=None)
-    corpus = [dictionary.doc2bow(token) for token in tokens]
-    # print(dictionary.token2id)
-    # print(viewitems(dictionary.dfs))
+    # corpus = [dictionary.doc2bow(token) for token in tokens]
+    print(dictionary.token2id)
+    print(viewitems(dictionary.dfs))
     print(
         Fore.GREEN +
         "This is the lda analysis for Question: ",
@@ -94,6 +87,6 @@ def corp_eval(dictionary, tokens, corpus, q_count):
         Fore.CYAN +
         "Showing the lda visually, please hit control+c to access the next set of responses:",
         Style.RESET_ALL)
-    pyLDAvis.show(vis)
+    # pyLDAvis.show(vis)
     logging.info("Evaluates the dictionary to see if words are repeated")
     return(dictionary.dfs)
