@@ -13,6 +13,8 @@ def read_responses(filepath, conf):
     # places all of the data in the file into csvdata
     with open(filepath, newline='') as csvfile:
         csvdata = list(csv.reader(csvfile, delimiter=','))
+    generate_responses(csvdata)
+    return responses
 
 def generate_responses(csvdata_list):		
     responses = list()
@@ -25,4 +27,3 @@ def generate_responses(csvdata_list):
         # responses to the questions
         for value in record[2:]:
             responses.append(value)
-    return responses
