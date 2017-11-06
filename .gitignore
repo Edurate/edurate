@@ -3,3 +3,4 @@ __pycache__
 .cache
 *.csv
 /archive/
+Edurate_Client.json
