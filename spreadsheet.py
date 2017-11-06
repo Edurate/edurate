@@ -60,19 +60,17 @@ def filterDates(data):
     TIMESTAMP_LOCATION_INDEX = 0
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     # finds out what the most current date is
-    for entry in data[1:]:
-        for x in entry:
-            location = entry.index(x)
-            if location == TIMESTAMP_LOCATION_INDEX:
-                date = datetime.strptime(entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
+    for entry in data:
+        for current_index, x in enumerate(entry):
+            if current_index == TIMESTAMP_LOCATION_INDEX:
+                date = datetime.strptime(entry[current_index], '%m/%d/%Y').date()
                 if date > maxDate:
                     maxDate = date
-                entry.pop(location)
-                entry.insert(location, date)
     latest_responses = list()
     # keeps the most current responses for archiving
-    for entry in data[1:]:
-        if entry[TIMESTAMP_LOCATION_INDEX] == maxDate:
+    for entry in data:
+        entry_date = datetime.strptime(entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
+        if entry_date == maxDate:
             latest_responses.append(entry)
     return latest_responses
 
