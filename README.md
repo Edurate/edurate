@@ -15,8 +15,8 @@ Edurate is a python 3 program and, therefore, uses [pip](https://pip.pypa.io/en/
 for instillation. Type the following commands before running.
 
 ```shell
-pip install --upgrade pip
-pip install -r requirements.txt
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
 ```
 
 ---
