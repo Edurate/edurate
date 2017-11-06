@@ -13,20 +13,20 @@ if __name__ == "__main__":
     print("https://github.com/Edurate/edurate")
     logging.info("Analyzes the Google form responses with gensim and " +
                  "returns the repeated words, graphs, or archives the file")
-    edu_args = parse_arguments(sys.argv[1:])
-    spreadsheet_list = spreadsheet.read_from_spreadsheet()
-    data = spreadsheet.get_graph_data(spreadsheet_list)
+    EDU_ARGS = parse_arguments(sys.argv[1:])
+    SPREADSHEET_LIST = spreadsheet.read_from_spreadsheet()
+    DATA = spreadsheet.get_graph_data(SPREADSHEET_LIST)
 
-    if(edu_args.graph):
+    if EDU_ARGS.graph:
         print("Creating Graphs...")
-        graph(data)
+        graph(DATA)
 
-    spreadsheet.create_csv(spreadsheet_list)
-    responses = read_responses(edu_args.file)
-    responses = spreadsheet.filter_dates(responses)
-    responses = spreadsheet.flip_responses(responses)
+    spreadsheet.create_csv(SPREADSHEET_LIST)
+    RESPONSES = read_responses(EDU_ARGS.file)
+    RESPONSES = spreadsheet.filter_dates(RESPONSES)
+    RESPONSES = spreadsheet.flip_responses(RESPONSES)
 
-    question_number = 7
-    for index, response in enumerate(responses[8:12]):
-        gensim_analysis(response, question_number)
-        question_number += 1
+    QUESTION_NUMBER = 7
+    for index, response in enumerate(RESPONSES[8:12]):
+        gensim_analysis(response, QUESTION_NUMBER)
+        QUESTION_NUMBER += 1
