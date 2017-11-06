@@ -1,15 +1,15 @@
-"""Use gensim to analyze the text of the responses to the Edurate evaluation."""
+"""Analyze the responses to the Edurate evaluation using Gensim."""
 
+import logging
+import warnings
+import gensim
 from gensim import corpora
 from profanity import profanity
 from stop_words import get_stop_words
 from six import viewitems
 from colorama import Fore, Style
-import logging
 import pyLDAvis
 import pyLDAvis.gensim
-import gensim
-import warnings
 
 
 def gensim_analysis(list_responses, q_count):
@@ -33,9 +33,11 @@ def create_tokens(list_responses):
     for res in list_responses:
         temp = []
         for word in res.split():
-            if not isinstance(word, int) and not profanity.contains_profanity(word) and word not in stoplist:
-                temp.append(word)
-        if len(temp) > 0:
+            if not isinstance(word, int):
+                if not profanity.contains_profanity(word):
+                    if word not in stoplist:
+                        temp.append(word)
+        if temp:
             tokens.append(temp)
 
     return tokens
@@ -46,7 +48,7 @@ def dictionary_create(tokens):
     dictionary = corpora.Dictionary(tokens)
 
     logging.info("Created a dictionary using the tokens")
-    return(dictionary)
+    return dictionary
 
 
 def corp_eval(dictionary, tokens, corpus, q_count):
@@ -72,10 +74,9 @@ def corp_eval(dictionary, tokens, corpus, q_count):
     vis = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
     print(Fore.YELLOW + "These are the current topics: " + Style.RESET_ALL)
     print(lda.print_topics(i))
-    print(
-        Fore.CYAN +
-        "Showing the LDA visually, please hit CTRL+C to move to the next question:",
-        Style.RESET_ALL)
+    print(Fore.CYAN +
+          "Showing the LDA visually, use CTRL+C to move to the next question:",
+          Style.RESET_ALL)
     pyLDAvis.show(vis)
     logging.info("Evaluated the dictionary to see if words are repeated")
     return dictionary.dfs
