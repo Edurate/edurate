@@ -7,7 +7,7 @@ from itertools import repeat
 
 
 def read_from_spreadsheet():
-    """ reads the google spreadsheet """
+    """Read data from the Google spreadsheet."""
     logging.info(
         "Authenticating to Google Sheets to obtain Google Form data")
     # use creds to create a client to interact with the Google Drive API
@@ -25,7 +25,8 @@ def read_from_spreadsheet():
     return list_of_hashes
 
 
-def getGraphData(spreadsheet_list):
+def get_graph_data(spreadsheet_list):
+    """Format spreadsheet_list for graph."""
     new = list()
     for key in spreadsheet_list[0].keys():
         new.append(key)
@@ -44,6 +45,7 @@ def getGraphData(spreadsheet_list):
 
 
 def flip_responses(data):
+    """Switch rows and columns in a list of lists."""
     # get the number of fields in each response to create that many lists
     num_of_fields = len(data[0])
 
@@ -55,8 +57,8 @@ def flip_responses(data):
     return list_of_field_responses
 
 
-def filterDates(data):
-    """ returns only the most current responses """
+def filter_dates(data):
+    """Return a list of responses only from the latest date."""
     TIMESTAMP_LOCATION_INDEX = 0
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     # finds out what the most current date is
@@ -76,7 +78,7 @@ def filterDates(data):
 
 
 def create_csv(spreadsheet_list):
-    """ creates the csv file """
+    """Create CSV file with spreadsheet data."""
     # returns True when funciton is completed
     logging.info("Creating a list of lists of students")
     formatted_list = list()
