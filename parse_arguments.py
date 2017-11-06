@@ -22,12 +22,6 @@ def parse_arguments(args):
     )
 
     edu_parser.add_argument(
-        "-a", "--archive",
-        help="Writes information from the spreadsheet to Archive directory",
-        action="store_true", required=False
-    )
-
-    edu_parser.add_argument(
         "-g",
         "--graph",
         help="Displays trend over time, average scores for each response, box plot for each entry",
