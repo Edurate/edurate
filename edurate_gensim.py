@@ -77,16 +77,16 @@ def corp_eval(dictionary, tokens, corpus, q_count):
 
     print(
         Fore.GREEN +
-        "This is the lda analysis for Question: ",
+        "Producing LDA analysis for question: ",
         q_count,
         Style.RESET_ALL)
     print(lda)
     vis = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
-    print(Fore.YELLOW + "These are the current topics:" + Style.RESET_ALL)
+    print(Fore.YELLOW + "These are the current topics: " + Style.RESET_ALL)
     print(lda.print_topics(i))
     print(
         Fore.CYAN +
-        "Showing the lda visually, please hit control+c to access the next set of responses:",
+        "Showing the LDA visually, please hit CTRL+C to move to the next question:",
         Style.RESET_ALL)
     pyLDAvis.show(vis)
     logging.info("Evaluated the dictionary to see if words are repeated")
