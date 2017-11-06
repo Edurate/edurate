@@ -3,6 +3,7 @@ import logging
 import csv
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+from itertools import repeat
 
 
 def read_from_spreadsheet():
@@ -24,7 +25,7 @@ def read_from_spreadsheet():
     return list_of_hashes
 
 
-def getGraphData(spreadsheet_list, conf):
+def getGraphData(spreadsheet_list):
     new = list()
     for key in spreadsheet_list[0].keys():
         new.append(key)
@@ -33,9 +34,7 @@ def getGraphData(spreadsheet_list, conf):
     for dictionary in spreadsheet_list:
         new = list()
         for key, value in dictionary.items():
-            if key == "Email Address" and conf:
-                continue
-            elif key == "Timestamp":
+            if key == "Timestamp":
                 new.append(value.split(" ")[0])
             else:
                 new.append(value)
@@ -45,43 +44,37 @@ def getGraphData(spreadsheet_list, conf):
 
 
 def flip_responses(data):
-    newList = list()
-    for i in range(0, len(data[0])):
-        new = list()
-        for row in data:
-            new.append(row[i])
-        newList.append(new)
-    # print(newList)
-    return newList
+    # get the number of fields in each response to create that many lists
+    num_of_fields = len(data[0])
+
+    list_of_field_responses = [[] for i in repeat(None, num_of_fields)]
+    for response in data:
+        for field_index, field in enumerate(response):
+            list_of_field_responses[field_index].append(field)
+
+    return list_of_field_responses
 
 
 def filterDates(data):
     """ returns only the most current responses """
-    columns = data[0]
-    timeColumn = None
-    # finds location of timestamp
-    for i in range(0, len(columns)):
-        if columns[i] == "Timestamp":
-            timeColumn = i
-            break
+    TIMESTAMP_LOCATION_INDEX = 0
     maxDate = datetime(2000, 1, 1, 0, 0).date()
     # finds out what the most current date is
     for entry in data[1:]:
-        for x in range(1, len(entry)):
-            if x == timeColumn:
-                date = datetime.strptime(entry[x], '%m/%d/%Y').date()
+        for x in entry:
+            location = entry.index(x)
+            if location == TIMESTAMP_LOCATION_INDEX:
+                date = datetime.strptime(entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
                 if date > maxDate:
                     maxDate = date
-                entry.pop(x)
-                entry.insert(x, date)
-    current = list()
+                entry.pop(location)
+                entry.insert(location, date)
+    latest_responses = list()
     # keeps the most current responses for archiving
     for entry in data[1:]:
-        if entry[timeColumn] == maxDate:
-            current.append(entry)
-    return current
-    # for x in current:
-    # print(x)
+        if entry[TIMESTAMP_LOCATION_INDEX] == maxDate:
+            latest_responses.append(entry)
+    return latest_responses
 
 
 def create_csv(spreadsheet_list):
@@ -126,15 +119,11 @@ def create_csv(spreadsheet_list):
         break
     # grabs responses to questions from each user
     for entry in spreadsheet_list:
-        maxDate = datetime(2000, 1, 1, 0, 0).date()
         formatted_entry = [None] * 12
         for question, response in entry.items():
             if question == 'Timestamp':
-                time = entry[question].partition(' ')[0]
+                date = entry[question].partition(' ')[0]
                 formatted_entry.pop(0)
-                date = datetime.strptime(time, '%m/%d/%Y').date()
-                if(date > maxDate):
-                    maxDate = date
                 formatted_entry.insert(0, date)
             elif question == 'Email Address':
                 username = entry[question].partition('@')[0]
@@ -174,9 +163,6 @@ def create_csv(spreadsheet_list):
                 formatted_entry.append(response)
 
         formatted_list.append(formatted_entry)
-        for entry in formatted_list:
-            if(entry[0] < maxDate):
-                formatted_list.pop(formatted_list.index(entry))
     formatted_list.insert(0, questions)
 
     logging.info("Writing formatted data to CSV file")
