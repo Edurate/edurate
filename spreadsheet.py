@@ -82,7 +82,6 @@ def filter_dates(data):
     return latest_responses
 
 
-
 def create_csv(spreadsheet_list):
     """Create CSV file with spreadsheet data."""
     # returns True when funciton is completed
