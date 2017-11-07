@@ -11,6 +11,8 @@ from six import viewitems
 from colorama import Fore, Style
 import pyLDAvis
 import pyLDAvis.gensim
+import webbrowser
+import inspect
 
 
 def gensim_analysis(list_responses, q_count):
@@ -76,8 +78,25 @@ def corp_eval(dictionary, tokens, corpus, q_count):
     print(Fore.YELLOW + "These are the current topics: " + Style.RESET_ALL)
     print(lda.print_topics(i))
     print(Fore.CYAN +
-          "Showing the LDA visually, use CTRL+C to move to the next question:",
+          "Opening up visualization in a new tab in the browser...",
           Style.RESET_ALL)
-    pyLDAvis.show(vis)
-    logging.info("Evaluated the dictionary to see if words are repeated")
+
+    # Writing HTML of visualization to file instead of showing with pyLDAvis show function
+    # because the show function starts a server, which allows only one file to be displayed
+    # at once.
+    vis_html_text = pyLDAvis.prepared_data_to_html(vis)
+    vis_html_file = open("vis.html", "w")
+    vis_html_file.write(vis_html_text)
+
+    # Getting path to the edurate_gensim.py module, which is in the same directory
+    # as the HTML file. This path will be used to generate the file path to the HTML
+    # that is to be displayed.
+    MODULE_NAME = "edurate_gensim.py"
+    PATH_TO_MODULE = inspect.stack()[0][1]
+    # Removing name of module from path so that the path only includes up to the
+    # directory where the HTML file is located.
+    PATH_TO_HTML = PATH_TO_MODULE[:-len(MODULE_NAME)]
+    webbrowser.open("file:///" + PATH_TO_HTML + "vis.html", new=2)
+
+    logging.info("Gensim visualization has been displayed.")
     return dictionary.dfs
