@@ -39,7 +39,8 @@ def create_tokens(list_responses):
             if not isinstance(word, int):
                 if not profanity.contains_profanity(word):
                     if word not in stoplist:
-                        temp.append(word)
+                        if word != "I":
+                            temp.append(word)
         if temp:
             tokens.append(temp)
 
