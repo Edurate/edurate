@@ -29,5 +29,5 @@ if __name__ == "__main__":
 
     QUESTION_NUMBER = 7
     for index, response in enumerate(RESPONSES[8:12]):
-        gensim_analysis(response, QUESTION_NUMBER)
+        gensim_analysis(response, QUESTION_NUMBER, EDU_ARGS.topics)
         QUESTION_NUMBER += 1
