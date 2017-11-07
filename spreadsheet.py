@@ -16,6 +16,7 @@ def read_from_spreadsheet():
     logging.info(
         "Authenticating to Google Sheets to obtain Google Form data")
     # use creds to create a client to interact with the Google Drive API
+    # TODO >> create a configuration file that the user can edit for security measures and ease of access.
     scope = ['https://spreadsheets.google.com/feeds']
     creds = ServiceAccountCredentials.from_json_keyfile_name(
         'Edurate_Client.json', scope)
@@ -31,6 +32,7 @@ def read_from_spreadsheet():
 
 
 def get_graph_data(spreadsheet_list):
+    # This lets the program find question numbers and timestamps so that responses can be more easily separated and grouped according to graph data needs.
     """Format spreadsheet_list for graph."""
     new = list()
     for key in spreadsheet_list[0].keys():
@@ -50,6 +52,8 @@ def get_graph_data(spreadsheet_list):
 
 
 def flip_responses(data):
+    # Currently is not implemented outside of testing
+    # If it is necessary, it should be included in the operation of the program
     """Switch rows and columns in a list of lists."""
     if data == []:
         logging.error("Empty list given. No rows and columns to flip. Returning empty list.")
@@ -71,6 +75,7 @@ def flip_responses(data):
 
 
 def filter_dates(data):
+    # currently, the oldest date to save record for is arbitrary, having a better defined system for how to keep dates could be very useful.
     """Return a list of responses only from the latest date."""
     TIMESTAMP_LOCATION_INDEX = 0
     max_date = datetime(2000, 1, 1, 0, 0).date()
@@ -94,10 +99,11 @@ def filter_dates(data):
 
 def create_csv(spreadsheet_list):
     """Create CSV file with spreadsheet data."""
-    # returns True when funciton is completed
+    # returns True when funciton is completed, to inform us that the method works
     logging.info("Creating a list of lists of students")
     formatted_list = list()
     # grabs questions from spreadsheet
+    # currently implemented to run for exactly 10 questions, a solution that can implement an arbitrary number of questions would perhaps be more useful.
     for entry in spreadsheet_list:
         questions = [None] * 12
         for question, response in entry.items():

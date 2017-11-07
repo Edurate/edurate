@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
-    # get all data because we need to see trend over time
+    # get all data because we need to see trend over time, given implementation of an arbitrary date retaining method, we would select a more specific range.
     data = convert_to_ints(data)
     # display generated graphs
     print(graph1(data))

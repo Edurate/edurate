@@ -30,8 +30,7 @@ def create_tokens(list_responses):
     logging.info("Creating tokens")
     stoplist = get_stop_words('en')
     tokens = []
-
-    for res in list_responses:
+    # determines whether a word is profane and if not, adds it to a list of words that we'll analyze later
         temp = []
         for word in res.split():
             if not isinstance(word, int):
@@ -45,6 +44,7 @@ def create_tokens(list_responses):
 
 
 def dictionary_create(tokens):
+    # to clean up the data and show only a single instance of each word in the list while not losing the information of how common the word was, we make a dictionary with words and quantities.
     """Create the dictionary from the tokens of the answer."""
     dictionary = corpora.Dictionary(tokens)
 

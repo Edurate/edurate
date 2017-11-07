@@ -14,6 +14,7 @@ def read_responses(filepath):
         csvdata = list(csv.reader(csvfile, delimiter=','))
 
     responses = list()
+    # We're separating the responses by timestamp here, not by student, so that we see the entirety of the number responses with the class as our scope.
     for record in csvdata[1:]:
         # date of response
         row = list()
