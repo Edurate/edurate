@@ -47,6 +47,55 @@ visualization, use the following command:
 python3 edurate.py
 ```
 
+To produce the file containing the responses, use:
+
+```
+python3 edurate.py -f
+```
+
+or
+
+```
+python3 edurate.py --file
+```
+
+To ignore student emails in responses, use:
+
+```
+python3 edurate.py -c
+```
+
+or
+
+```
+python3 edurate.py --confidential
+```
+
+To display trends over time, the average scores for each response, and a box
+plot for each entry, use:
+
+```
+python3 edurate.py -g
+```
+
+or
+
+```
+python3 edurate.py --graph
+```
+
+To display diagnostic information, use:
+
+```
+python3 edurate.py -d
+```
+
+or
+
+```
+python3 edurate.py --debug
+```
+
 ## Analysis
 
 Please see further information on how the LDavis visualization works and how
