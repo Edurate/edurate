@@ -1,4 +1,4 @@
-""" reads command line arguments """
+""" reads command-line arguments """
 import argparse
 import logging
 
@@ -6,6 +6,7 @@ from default import DEFAULT_FILE
 
 
 def parse_arguments(args):
+    """ reads command-line arguments """
     edu_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
@@ -22,16 +23,12 @@ def parse_arguments(args):
     )
 
     edu_parser.add_argument(
-        "-a", "--archive",
-        help="Writes information from the spreadsheet to Archive directory",
-        action="store_true", required=False
-    )
-
-    edu_parser.add_argument(
-        "-g", "--graph",
-        help="Displays trend over time, average scores for each response, box plot for each entry",
-        action="store_true", required=False
-    )
+        "-g",
+        "--graph",
+        help="Displays trend over time, average scores for each response," +
+        " and box plot for each entry",
+        action="store_true",
+        required=False)
 
     edu_parser.add_argument(
         "-d", "--debug",

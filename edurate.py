@@ -1,15 +1,11 @@
-""" main fuction """
+"""Performs NLP on student responses to teaching evaluation."""
 import sys
 import logging
 
-from spreadsheet import read_from_spreadsheet
-from spreadsheet import create_csv
-from spreadsheet import getGraphData
-from spreadsheet import filterDates
+import spreadsheet
 from parse_arguments import parse_arguments
 from read_responses import read_responses
 from graphing import graph
-from archive_information import archive_information
 from edurate_gensim import gensim_analysis
 
 if __name__ == "__main__":
@@ -17,17 +13,20 @@ if __name__ == "__main__":
     print("https://github.com/Edurate/edurate")
     logging.info("Analyzes the Google form responses with gensim and " +
                  "returns the repeated words, graphs, or archives the file")
-    edu_args = parse_arguments(sys.argv[1:])
-    spreadsheet_list = read_from_spreadsheet()
-    data = getGraphData(spreadsheet_list, edu_args.confidential)
-    archive_info = data
-    if(edu_args.archive):
-        print("Archiving Information...")
-        archive_information(filterDates(list(archive_info)))
-    if(edu_args.graph):
-        print("Creating Graphs...")
-        graph(data)
+    EDU_ARGS = parse_arguments(sys.argv[1:])
+    SPREADSHEET_LIST = spreadsheet.read_from_spreadsheet()
+    DATA = spreadsheet.get_graph_data(SPREADSHEET_LIST)
 
-    create_csv(spreadsheet_list)
-    res = read_responses(edu_args.file, edu_args.confidential)
-    gensim_analysis(res)
+    if EDU_ARGS.graph:
+        print("Creating Graphs...")
+        graph(DATA)
+
+    spreadsheet.create_csv(SPREADSHEET_LIST)
+    RESPONSES = read_responses(EDU_ARGS.file)
+    RESPONSES = spreadsheet.filter_dates(RESPONSES)
+    RESPONSES = spreadsheet.flip_responses(RESPONSES)
+
+    QUESTION_NUMBER = 7
+    for index, response in enumerate(RESPONSES[8:12]):
+        gensim_analysis(response, QUESTION_NUMBER)
+        QUESTION_NUMBER += 1
