@@ -85,7 +85,8 @@ def corp_eval(dictionary, tokens, corpus, q_count, num_of_topics):
     # because the show function starts a server, which allows only one file to be displayed
     # at once.
     vis_html_text = pyLDAvis.prepared_data_to_html(vis)
-    vis_html_file = open("vis.html", "w")
+    vis_html_file_name = "vis" + str(q_count) + ".html"
+    vis_html_file = open(vis_html_file_name, "w")
     vis_html_file.write(vis_html_text)
 
     # Getting path to the edurate_gensim.py module, which is in the same directory
@@ -96,7 +97,7 @@ def corp_eval(dictionary, tokens, corpus, q_count, num_of_topics):
     # Removing name of module from path so that the path only includes up to the
     # directory where the HTML file is located.
     PATH_TO_HTML = PATH_TO_MODULE[:-len(MODULE_NAME)]
-    webbrowser.open("file:///" + PATH_TO_HTML + "vis.html", new=2)
+    webbrowser.open("file:///" + PATH_TO_HTML + vis_html_file_name, new=2)
 
     logging.info("Gensim visualization has been displayed.")
     return dictionary.dfs
