@@ -14,8 +14,6 @@ from flake8.api import legacy as flake8
 import parse_arguments
 import logging
 import edurate_gensim
-import gensim
-
 
 
 def test_parse_arguments1():
@@ -73,7 +71,7 @@ def test_create_tokens_with_profanity():
         a token from profanity"""
     list_responses = ['test this code', ' for bad words', 'such as shit']
     check = edurate_gensim.create_tokens(list_responses)
-    assert check == [['test', 'this', 'code'], ['for', 'bad', 'words'], ['such']]
+    assert check == [['test', 'code'], ['bad', 'words'], []]
     assert ("shit" in check) is False
 
 
@@ -103,7 +101,7 @@ def test_corp_eval_none():
     assert dict == {}
 
 
-def test_corp_eval_none():
+def test_corp_eval_none2():
     tokens = [['testing'], ['testing', 'testing', 'testing'], ['make', 'tokens']]
     dictionary = edurate_gensim.dictionary_create(tokens)
     dict = edurate_gensim.corp_eval(dictionary, tokens)
