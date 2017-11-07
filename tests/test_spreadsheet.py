@@ -12,7 +12,7 @@ def test_get_graph_data():
     assert actual_graph_data == expected_graph_data
 
 
-def test_flip_responses():
+def test_flip_responses_with_populated_list():
     """Check if rows and columns have been switched."""
     list_to_flip = [['Row 1 Col 1', 'Row 1 Col 2', 'Row 1 Col 3'],
                     ['Row 2 Col 1', 'Row 2 Col 2', 'Row 2 Col 3'],
@@ -27,9 +27,41 @@ def test_flip_responses():
     assert actual_flipped_list == expected_flipped_list
 
 
-def test_filter_dates():
+def test_flip_responses_with_empty_list():
+    """Check if empty list is returned."""
+    list_to_flip = []
+
+    expected_flipped_list = []
+
+    actual_flipped_list = spreadsheet.flip_responses(list_to_flip)
+
+    assert actual_flipped_list == expected_flipped_list
+
+
+def test_flip_responses_with_none_list():
+    """Check if empty list is returned."""
+    list_to_flip = None
+
+    expected_flipped_list = None
+
+    actual_flipped_list = spreadsheet.flip_responses(list_to_flip)
+
+    assert actual_flipped_list == expected_flipped_list
+
+
+def test_filter_dates_ordered_response_list():
     """Check that only responses from most recent date are returned."""
     response_list = [['11/1/2017'], ['11/2/2017'], ['11/3/2017'], ['11/5/2017'], ['11/5/2017']]
+
+    expected_latest_date_list = [['11/5/2017'], ['11/5/2017']]
+    actual_latest_date_list = spreadsheet.filter_dates(response_list)
+
+    assert actual_latest_date_list == expected_latest_date_list
+
+
+def test_filter_dates_unordered_response_list():
+    """Check that only responses from most recent date are returned."""
+    response_list = [['11/5/2017'], ['11/2/2017'], ['11/3/2017'], ['11/1/2017'], ['11/5/2017']]
 
     expected_latest_date_list = [['11/5/2017'], ['11/5/2017']]
     actual_latest_date_list = spreadsheet.filter_dates(response_list)

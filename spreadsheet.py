@@ -46,6 +46,14 @@ def get_graph_data(spreadsheet_list):
 
 def flip_responses(data):
     """Switch rows and columns in a list of lists."""
+    if data == []:
+        logging.error("Empty list given. No rows and columns to flip. Returning empty list.")
+        return []
+
+    if data is None:
+        logging.error("No list given to flip. Returning None.")
+        return None
+
     # get the number of fields in each response to create that many lists
     num_of_fields = len(data[0])
 
