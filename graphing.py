@@ -8,7 +8,6 @@ import ggplot
 warnings.filterwarnings('ignore')
 
 
-
 def graph(data):
     """ Takes only most recent input data and then displays graphs """
     # get all data because we need to see trend over time
