@@ -96,13 +96,21 @@ interpreting topics,” in Proceedings of the Workshop on Interactive Language
 Learning, Visualization, and Interfaces (Baltimore, MD: 2014 Association for
 Computation Linguistics, 2014. Accessed November 2, 2017,
 http://www.aclweb.org/anthology/W14-3110.
+
 2 Ibid.
+
 3 Ibid.
+
 4 Ibid.
+
 5 Ibid.
+
 6 Ibid.
+
 7 Ibid.
+
 8 Ibid.
+
 9 Ibid.
 
 
