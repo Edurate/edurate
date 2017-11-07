@@ -1,6 +1,11 @@
-import gspread
-import logging
+""" Retrieve and format data from the Google Sheets interface """
+
+
 import csv
+import logging
+from itertools import repeat
+from datetime import datetime
+import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 from itertools import repeat
@@ -68,19 +73,21 @@ def flip_responses(data):
 def filter_dates(data):
     """Return a list of responses only from the latest date."""
     TIMESTAMP_LOCATION_INDEX = 0
-    maxDate = datetime(2000, 1, 1, 0, 0).date()
+    max_date = datetime(2000, 1, 1, 0, 0).date()
     # finds out what the most current date is
     for entry in data:
-        for current_index, x in enumerate(entry):
+        for current_index, _ in enumerate(entry):
             if current_index == TIMESTAMP_LOCATION_INDEX:
-                date = datetime.strptime(entry[current_index], '%m/%d/%Y').date()
-                if date > maxDate:
-                    maxDate = date
+                date = datetime.strptime(
+                    entry[current_index], '%m/%d/%Y').date()
+                if date > max_date:
+                    max_date = date
     latest_responses = list()
     # keeps the most current responses for archiving
     for entry in data:
-        entry_date = datetime.strptime(entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
-        if entry_date == maxDate:
+        entry_date = datetime.strptime(
+            entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
+        if entry_date == max_date:
             latest_responses.append(entry)
     return latest_responses
 

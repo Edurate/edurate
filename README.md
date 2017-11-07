@@ -15,17 +15,8 @@ Edurate is a python 3 program and, therefore, uses [pip](https://pip.pypa.io/en/
 for instillation. Type the following commands before running.
 
 ```shell
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-## Initial Setup
-
-Install gspread as well as oauth2client in you root directory in the repository
-using the command:
-
-```shell
-python3 -m pip install --user gspread oauth2client
+pip3 install --upgrade pip
+pip3 install -r requirements.txt
 ```
 
 ---

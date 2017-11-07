@@ -1,12 +1,11 @@
+""" Reads the .csv file and returns the information stored inside """
+
 import csv
 from pathlib import Path
 
-""" Reads the .cvs file and returns the information stored inside """
-
-# send function name of the file to be read and if names are confidential
-
 
 def read_responses(filepath):
+    """ Reads the .csv file and returns the information """
     # checks if the file exists
     if Path(filepath).is_file() is False:
         return "File Not Found"
