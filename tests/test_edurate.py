@@ -27,8 +27,8 @@ def test_parse_arguments1():
 
 def test_parse_arguments2():
     """Testing for appropriate output when a file is specified and
-        the --debug argument is given. To ensure proper output, 
-        we assert that the program parses the correct file and that 
+        the --debug argument is given. To ensure proper output,
+        we assert that the program parses the correct file and that
         the logging function being used is the logging.DEBUG function"""
     args = ['--file', 'data.csv', '--debug']
     parsed_args = parse_arguments.parse_arguments(args)
@@ -46,7 +46,7 @@ def test_parse_arguments3():
 
 
 def test_create_tokens_with_no_repeating_words():
-    """Testing that the create_tokens function will create tokens 
+    """Testing that the create_tokens function will create tokens
         from a list of strings. A given word must have a length
         of at least 3 characters to be considered a token. In this
         test, we have zero repeating words"""
@@ -58,7 +58,7 @@ def test_create_tokens_with_no_repeating_words():
 
 
 def test_create_tokens_with_repeating_words():
-    """Testing the create_tokens function works properly when 
+    """Testing the create_tokens function works properly when
         given a list with repeating words."""
     list_responses = ['I am testing', 'testing testing testing', 'make my tokens']
     check = edurate_gensim.create_tokens(list_responses)
@@ -73,7 +73,7 @@ def test_create_tokens_with_profanity():
         a token from profanity"""
     list_responses = ['test for', 'bad words', 'like shit']
     check = edurate_gensim.create_tokens(list_responses)
-    assert check = [['test', 'for'], ['bad', 'words'], ['like']]
+    assert check == [['test', 'for'], ['bad', 'words'], ['like']]
     assert ("shit" in check) is False
 
 
