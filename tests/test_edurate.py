@@ -71,13 +71,16 @@ def test_create_tokens_with_repeating_words():
 def test_create_tokens_with_profanity():
     """Testing that the create_tokens function will not create
         a token from profanity"""
-    list_responses = ['test for', 'bad words', 'like shit']
+    list_responses = ['test this code', ' for bad words', 'such as shit']
     check = edurate_gensim.create_tokens(list_responses)
-    assert check = [['test', 'for'], ['bad', 'words'], ['like']]
+    assert check = [['test', 'this', 'code'], ['for', 'bad', 'words'], ['such']]
     assert ("shit" in check) is False
 
 
 def test_dictionary_create_none_repeat():
+    """Testing that the dictionary_create() function will keep
+        track of the number of times a particular word occurs.
+        In this test, every word has a frequency of 1"""
     tokens = [['testing'], ['test'], ['make', 'tokens']]
     dictionary = edurate_gensim.dictionary_create(tokens)
     corp = [dictionary.doc2bow(token) for token in tokens]
@@ -85,10 +88,11 @@ def test_dictionary_create_none_repeat():
 
 
 def test_dictionary_create_repeat():
+    """Testing that the dictionary_create() function works
+        properly when given repeating tokens"""
     tokens = [['testing'], ['testing', 'testing', 'testing'], ['make', 'tokens']]
     dictionary = edurate_gensim.dictionary_create(tokens)
     corp = [dictionary.doc2bow(token) for token in tokens]
-    print(corp)
     assert corp == [[(0, 1)], [(0, 3)], [(1, 1), (2, 1)]]
 
 
