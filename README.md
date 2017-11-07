@@ -26,7 +26,8 @@ pip3 install -r requirements.txt
 Edurate analysis professor/course questionnaires and uses natural language
 processing detect the most common problems and output them into the terminal.
 
-To specify the number of topics for the LDA analysis, use the `-t` or `--topics` flag. If the number of topics is not specified, it is assumed to be 3. Example:
+To specify the number of topics for the LDA analysis, use the `-t` or `--topics`
+flag. If the number of topics is not specified, it is assumed to be 3. Example:
 
 ```
 python3 edurate.py -t 4
