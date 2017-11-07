@@ -73,11 +73,7 @@ def test_create_tokens_with_profanity():
         a token from profanity"""
     list_responses = ['test this code', ' for bad words', 'such as shit']
     check = edurate_gensim.create_tokens(list_responses)
-<<<<<<< HEAD
     assert check = [['test', 'this', 'code'], ['for', 'bad', 'words'], ['such']]
-=======
-    assert check == [['test', 'for'], ['bad', 'words'], ['like']]
->>>>>>> 596131e7b61d5bbaf613450585bce38260bdf423
     assert ("shit" in check) is False
 
 
