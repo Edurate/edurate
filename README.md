@@ -3,28 +3,45 @@
 
 Edurate is a professor evaluation program written to help professors gather
 information throughout the semester in order to help them better their courses
-as see where their students are struggling. Users need only send out
+and see where their students are struggling. Users need only send out
 questionnaires and, once submitted, Edurate will read in the text files and
-output information on where students are struggling. Edurate will save and time
-stamp questionnaires so that each time it is run during a given semester
+output information on where students are struggling. Edurate will save and
+time stamp questionnaires so that each time it is run during a given semester
 improvement can be seen.
 
 ## Installation
 
-Edurate is a python 3 program and, therefore, uses [pip](https://pip.pypa.io/en/stable/installing/)
-for instillation. Type the following commands before running.
+Edurate is a python 3 program and, therefore, uses
+[pip](https://pip.pypa.io/en/stable/installing/) for installation. Type the
+three following commands before running the program.
 
 ```shell
 pip3 install --upgrade pip
 pip3 install -r requirements.txt
+python3 -m pip install --user gspreed oauth2client 
 ```
+
+Then, create a Google Sheet and a Google Form in Google Drive. In the form
+create questions that allows your students to provide information about how
+they feel about the teaching and the class. After you have received one
+submission from the Form, go to the response tab and click the green icon with
+the white cross through it. This will allow you to link the Sheet to the Form.
+You can create a new Sheet or link said Sheet to a pre-existing form.
 
 ---
 
 ## Usage
 
-Edurate analysis professor/course questionnaires and uses natural language
-processing detect the most common problems and output them into the terminal.
+Edurate analyzes professor and course questionnaires in using natural language
+processing to detect the most common problems.  Consequently, it outputs them
+into an LDavis visualization. To run the program and output LDavis
+visualization, use the following command:  
+```python3 edurate.py```
+
+## Analysis
+
+Please see further information on how the LDavis visualization works and how
+you can interpret its results at EdurateLDavis_Analysis.md
 
 ### Spam Filter
 
