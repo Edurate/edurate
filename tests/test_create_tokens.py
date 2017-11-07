@@ -39,7 +39,7 @@ def test_create_tokens_with_profanity():
         a token from profanity"""
     list_responses = ['test this code', ' for bad words', 'such as shit']
     check = edurate_gensim.create_tokens(list_responses)
-    assert check == [['test', 'code'], ['bad', 'words'], []]
+    assert check == [['test', 'code'], ['bad', 'words']]
     assert ("shit" in check) is False
 
 
@@ -57,4 +57,3 @@ def test_flake8():
     style_guide = flake8.get_style_guide(ignore=["E265", "E501", "F405"])
     report = style_guide.check_files(filenames)
     assert report.get_statistics('E') == [], 'Flake8 found violations'
-    
