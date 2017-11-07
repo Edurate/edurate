@@ -59,18 +59,6 @@ or
 python3 edurate.py --file
 ```
 
-To ignore student emails in responses, use:
-
-```
-python3 edurate.py -c
-```
-
-or
-
-```
-python3 edurate.py --confidential
-```
-
 To display trends over time, the average scores for each response, and a box
 plot for each entry, use:
 
