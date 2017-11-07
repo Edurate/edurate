@@ -3,28 +3,86 @@
 
 Edurate is a professor evaluation program written to help professors gather
 information throughout the semester in order to help them better their courses
-as see where their students are struggling. Users need only send out
+and see where their students are struggling. Users need only send out
 questionnaires and, once submitted, Edurate will read in the text files and
-output information on where students are struggling. Edurate will save and time
-stamp questionnaires so that each time it is run during a given semester
+output information on where students are struggling. Edurate will save and
+time stamp questionnaires so that each time it is run during a given semester
 improvement can be seen.
 
 ## Installation
 
-Edurate is a python 3 program and, therefore, uses [pip](https://pip.pypa.io/en/stable/installing/)
-for instillation. Type the following commands before running.
+Edurate is a python 3 program and, therefore, uses
+[pip](https://pip.pypa.io/en/stable/installing/) for installation. Type the
+three following commands before running the program.
 
-```shell
+```
 pip3 install --upgrade pip
+```
+
+```
 pip3 install -r requirements.txt
 ```
+
+```
+python3 -m pip install --user gspreed oauth2client
+```
+
+Then, create a Google Sheet and a Google Form in Google Drive. In the form
+create questions that allows your students to provide information about how
+they feel about the teaching and the class. After you have received one
+submission from the Form, go to the response tab and click the green icon with
+the white cross through it. This will allow you to link the Sheet to the Form.
+You can create a new Sheet or link said Sheet to a pre-existing form.
 
 ---
 
 ## Usage
 
-Edurate analysis professor/course questionnaires and uses natural language
-processing detect the most common problems and output them into the terminal.
+Edurate analyzes professor and course questionnaires in using natural language
+processing to detect the most common problems.  Consequently, it outputs them
+into an LDavis visualization. To run the program and output LDavis
+visualization, use the following command:
+
+```
+python3 edurate.py
+```
+
+To produce the file containing the responses, use:
+
+```
+python3 edurate.py -f
+```
+
+or
+
+```
+python3 edurate.py --file
+```
+
+To display trends over time, the average scores for each response, and a box
+plot for each entry, use:
+
+```
+python3 edurate.py -g
+```
+
+or
+
+```
+python3 edurate.py --graph
+```
+
+To display diagnostic information, use:
+
+```
+python3 edurate.py -d
+```
+
+or
+
+```
+python3 edurate.py --debug
+```
 
 To specify the number of topics for the LDA analysis, use the `-t` or `--topics`
 flag. If the number of topics is not specified, it is assumed to be 3. Example:
@@ -32,6 +90,11 @@ flag. If the number of topics is not specified, it is assumed to be 3. Example:
 ```
 python3 edurate.py -t 4
 ```
+
+## Analysis
+
+Please see further information on how the LDavis visualization works and how
+you can interpret its results at EdurateLDavis_Analysis.md
 
 ### Spam Filter
 
@@ -69,7 +132,7 @@ into a usable spreadsheet. Then all argparsers are verified.
 To run the test suite, run the following commands in the root directory of
 Edurate.
 
-```shell
+```
 pytest tests
 ```
 
@@ -80,7 +143,7 @@ If linting errors occur, run the following command to perform automatic linting.
 If there are errors that the tool cannot fix, the test suite will tell you
 where and what the errors are so that you may go to the location and fix them.
 
-```shell
+```
 autopep8 --in-place  --aggressive --aggressive  *.py
 ```
 
