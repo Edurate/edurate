@@ -94,21 +94,6 @@ def test_dictionary_create_repeat():
     assert corp == [[(0, 1)], [(0, 3)], [(1, 1), (2, 1)]]
 
 
-def test_corp_eval_none():
-    tokens = [['testing'], ['test'], ['make', 'tokens']]
-    dictionary = edurate_gensim.dictionary_create(tokens)
-    dict = edurate_gensim.corp_eval(dictionary, tokens)
-    assert dict == {}
-
-
-def test_corp_eval_none2():
-    tokens = [['testing'], ['testing', 'testing', 'testing'], ['make', 'tokens']]
-    dictionary = edurate_gensim.dictionary_create(tokens)
-    dict = edurate_gensim.corp_eval(dictionary, tokens)
-    print(dict)
-    assert dict == {0: 2}
-
-
 # Linting Tests
 def test_flake8():
 
@@ -123,4 +108,3 @@ def test_flake8():
     style_guide = flake8.get_style_guide(ignore=["E265", "E501", "F405"])
     report = style_guide.check_files(filenames)
     assert report.get_statistics('E') == [], 'Flake8 found violations'
-    
