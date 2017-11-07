@@ -2,7 +2,7 @@
 import argparse
 import logging
 
-from default import DEFAULT_FILE
+import default
 
 
 def parse_arguments(args):
@@ -13,13 +13,19 @@ def parse_arguments(args):
     edu_parser.add_argument(
         "-f", "--file",
         help="File containing the responses",
-        type=str, required=False, default=DEFAULT_FILE
+        type=str, required=False, default=default.DEFAULT_FILE
     )
 
     edu_parser.add_argument(
         "-c", "--confidential",
         help="Ignores student emails in responses",
         action="store_true", required=False
+    )
+
+    edu_parser.add_argument(
+        "-t", "--topics",
+        help="Sets number of topics for LDA analysis",
+        type=int, required=False, default=default.DEFAULT_NUM_OF_TOPICS
     )
 
     edu_parser.add_argument(

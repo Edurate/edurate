@@ -13,14 +13,14 @@ import pyLDAvis
 import pyLDAvis.gensim
 
 
-def gensim_analysis(list_responses, q_count):
+def gensim_analysis(list_responses, q_count, num_of_topics):
     """Complete the analysis for each answer."""
     warnings.filterwarnings('ignore')
     tokens = create_tokens(list_responses)
     dictionary = dictionary_create(tokens)
     corpus = [dictionary.doc2bow(token) for token in tokens]
     # print(corpus)
-    corp_eval(dictionary, tokens, corpus, q_count)
+    corp_eval(dictionary, tokens, corpus, q_count, num_of_topics)
 
     logging.info("Analyzes gensim and returns the repeated words")
 
@@ -52,13 +52,13 @@ def dictionary_create(tokens):
     return dictionary
 
 
-def corp_eval(dictionary, tokens, corpus, q_count):
+def corp_eval(dictionary, tokens, corpus, q_count, num_of_topics):
     """Evaluate the corpus and produce gensim visualization."""
     i = len(tokens)
     lda = gensim.models.ldamodel.LdaModel(
         corpus,
         id2word=dictionary,
-        num_topics=3,
+        num_topics=num_of_topics,
         passes=1,
         alpha='symmetric',
         eta=None)
