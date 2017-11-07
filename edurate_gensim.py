@@ -50,7 +50,7 @@ def dictionary_create(tokens):
     logging.info("Created a dictionary using the tokens")
     return dictionary
 
-  
+
 def corp_eval(dictionary, tokens, corpus, q_count):
     """Evaluate the corpus and produce gensim visualization."""
     i = len(tokens)
