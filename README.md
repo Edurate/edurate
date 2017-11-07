@@ -96,17 +96,17 @@ or
 python3 edurate.py --debug
 ```
 
-## Analysis
-
-Please see further information on how the LDavis visualization works and how
-you can interpret its results at EdurateLDavis_Analysis.md
-
 To specify the number of topics for the LDA analysis, use the `-t` or `--topics`
 flag. If the number of topics is not specified, it is assumed to be 3. Example:
 
 ```
 python3 edurate.py -t 4
 ```
+
+## Analysis
+
+Please see further information on how the LDavis visualization works and how
+you can interpret its results at EdurateLDavis_Analysis.md
 
 ### Spam Filter
 
