@@ -8,7 +8,6 @@ from spreadsheet import getGraphData
 from spreadsheet import filterDates
 from parse_arguments import parse_arguments
 from read_responses import read_responses
-from parse_arguments import parse_arguments
 from graphing import graph
 from archive_information import archive_information
 from edurate_gensim import gensim_analysis
