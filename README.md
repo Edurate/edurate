@@ -15,10 +15,16 @@ Edurate is a python 3 program and, therefore, uses
 [pip](https://pip.pypa.io/en/stable/installing/) for installation. Type the
 three following commands before running the program.
 
-```shell
+```
 pip3 install --upgrade pip
+```
+
+```
 pip3 install -r requirements.txt
-python3 -m pip install --user gspreed oauth2client 
+```
+
+```
+python3 -m pip install --user gspreed oauth2client
 ```
 
 Then, create a Google Sheet and a Google Form in Google Drive. In the form
@@ -35,8 +41,11 @@ You can create a new Sheet or link said Sheet to a pre-existing form.
 Edurate analyzes professor and course questionnaires in using natural language
 processing to detect the most common problems.  Consequently, it outputs them
 into an LDavis visualization. To run the program and output LDavis
-visualization, use the following command:  
-```python3 edurate.py```
+visualization, use the following command:
+
+```
+python3 edurate.py
+```
 
 ## Analysis
 
@@ -79,7 +88,7 @@ into a usable spreadsheet. Then all argparsers are verified.
 To run the test suite, run the following commands in the root directory of
 Edurate.
 
-```shell
+```
 pytest tests
 ```
 
@@ -90,7 +99,7 @@ If linting errors occur, run the following command to perform automatic linting.
 If there are errors that the tool cannot fix, the test suite will tell you
 where and what the errors are so that you may go to the location and fix them.
 
-```shell
+```
 autopep8 --in-place  --aggressive --aggressive  *.py
 ```
 
