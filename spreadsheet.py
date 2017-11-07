@@ -7,6 +7,8 @@ from itertools import repeat
 from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
+from itertools import repeat
 
 
 def read_from_spreadsheet():
@@ -49,6 +51,14 @@ def get_graph_data(spreadsheet_list):
 
 def flip_responses(data):
     """Switch rows and columns in a list of lists."""
+    if data == []:
+        logging.error("Empty list given. No rows and columns to flip. Returning empty list.")
+        return []
+
+    if data is None:
+        logging.error("No list given to flip. Returning None.")
+        return None
+
     # get the number of fields in each response to create that many lists
     num_of_fields = len(data[0])
 
@@ -62,12 +72,12 @@ def flip_responses(data):
 
 def filter_dates(data):
     """Return a list of responses only from the latest date."""
-    timestamp_location_index = 0
+    TIMESTAMP_LOCATION_INDEX = 0
     max_date = datetime(2000, 1, 1, 0, 0).date()
     # finds out what the most current date is
     for entry in data:
         for current_index, _ in enumerate(entry):
-            if current_index == timestamp_location_index:
+            if current_index == TIMESTAMP_LOCATION_INDEX:
                 date = datetime.strptime(
                     entry[current_index], '%m/%d/%Y').date()
                 if date > max_date:
@@ -76,7 +86,7 @@ def filter_dates(data):
     # keeps the most current responses for archiving
     for entry in data:
         entry_date = datetime.strptime(
-            entry[timestamp_location_index], '%m/%d/%Y').date()
+            entry[TIMESTAMP_LOCATION_INDEX], '%m/%d/%Y').date()
         if entry_date == max_date:
             latest_responses.append(entry)
     return latest_responses
