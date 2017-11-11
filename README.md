@@ -23,10 +23,6 @@ pip3 install --upgrade pip
 pip3 install -r requirements.txt
 ```
 
-```
-python3 -m pip install --user gspread oauth2client
-```
-
 Then, create a Google Sheet and a Google Form in Google Drive. In the form
 create questions that allows your students to provide information about how
 they feel about the teaching and the class. After you have received one
