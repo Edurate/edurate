@@ -24,7 +24,7 @@ pip3 install -r requirements.txt
 ```
 
 ```
-python3 -m pip install --user gspreed oauth2client
+python3 -m pip install --user gspread oauth2client
 ```
 
 Then, create a Google Sheet and a Google Form in Google Drive. In the form
@@ -34,7 +34,21 @@ submission from the Form, go to the response tab and click the green icon with
 the white cross through it. This will allow you to link the Sheet to the Form.
 You can create a new Sheet or link said Sheet to a pre-existing form.
 
----
+## Initial Setup
+
+Create a Google Sheets spreadsheet and a Google Form in Google Drive. After
+you have at least one submission of the Form, you can go to the responses tab
+and click on the green icon with the white cross through it. This will enable
+you to link the Sheet to the Form. You can either create a new Sheet or link
+to a preexisting one. If you need to change the destination, you can click on
+the three dot icon menu to the right of the green icon and select "Select
+response destination".
+
+Open the .json file in the edurate repository and find the "client-email".
+Copy the quoted text that looks like an email address. Return to the Sheet and
+open the sharing options. Paste the address and click send.
+
+Within default.py, update the DEFAULT_FILE constant to the name of your Sheet.
 
 ## Usage
 
@@ -134,6 +148,12 @@ Edurate.
 
 ```
 pytest tests
+```
+
+or, depending on the operating system:
+
+```
+python3 -m pytest tests
 ```
 
 ### Automatic Linting
