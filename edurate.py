@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print("Creating Graphs...")
         graph(DATA)
 
-    spreadsheet.create_csv(SPREADSHEET_LIST)
+    spreadsheet.create_csv(SPREADSHEET_LIST, EDU_ARGS.file)
     RESPONSES = read_responses(EDU_ARGS.file)
     RESPONSES = spreadsheet.filter_dates(RESPONSES)
     RESPONSES = spreadsheet.flip_responses(RESPONSES)

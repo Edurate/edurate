@@ -92,7 +92,7 @@ def filter_dates(data):
     return latest_responses
 
 
-def create_csv(spreadsheet_list):
+def create_csv(spreadsheet_list, filepath):
     """Create CSV file with spreadsheet data."""
     # returns True when funciton is completed
     logging.info("Creating a list of lists of students")
@@ -181,8 +181,8 @@ def create_csv(spreadsheet_list):
     formatted_list.insert(0, questions)
 
     logging.info("Writing formatted data to CSV file")
-    logging.debug("CSV file name: " + "data.csv")
-    with open("./data.csv", 'w') as myfile:
+    logging.debug("CSV file name: " + filepath)
+    with open(filepath, 'w') as myfile:
         writer = csv.writer(myfile, quoting=csv.QUOTE_ALL)
         for item in formatted_list:
             writer.writerow(item)
