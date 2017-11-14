@@ -163,3 +163,5 @@ Travis by creating a .travis.yml file in the project's root directory.
 
 Any problems regarding Edurate can be written in the issues link at the top of
 the site.
+
+[![Coverage Status](https://coveralls.io/repos/github/Edurate/edurate/badge.svg?branch=master)](https://coveralls.io/github/Edurate/edurate?branch=master)
